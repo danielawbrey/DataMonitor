@@ -1,13 +1,6 @@
 #include "Taskbar.h"
 
 Taskbar::Taskbar(QFrame *parent) : QFrame(parent) {
-    setFrameShape(QFrame::Box);
-
-    setStyleSheet("QFrame { border-left: 1px solid black; border-right: none; border-top: none; border-bottom: none; background-color: red; };");
-
-    setMinimumWidth(50);
-    setMaximumWidth(60);
-
     QGridLayout *layout = new QGridLayout();
     
     channelInfoButton = new QPushButton();
@@ -41,5 +34,9 @@ Taskbar::Taskbar(QFrame *parent) : QFrame(parent) {
     exitButton->setIconSize(QSize(32,32));
     layout->addWidget(exitButton, 4, 0, Qt::AlignCenter | Qt::AlignTop);
 
+    setFrameShape(QFrame::Box);
+    setStyleSheet("QFrame { border-left: 1px solid black; border-right: none; border-top: none; border-bottom: none; background-color: red; };");
+    setMinimumWidth(50);
+    setMaximumWidth(60);
     setLayout(layout);
 };

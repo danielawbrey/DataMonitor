@@ -2,13 +2,11 @@
 
 OutputChannelTab::OutputChannelTab(QWidget *parent): QWidget(parent) {
     QVBoxLayout *pageLayout = new QVBoxLayout();
-    QHBoxLayout *buttonLayout = new QHBoxLayout();
 
     QPushButton *addButton = new QPushButton("Add Channel");
     addButton->setMinimumWidth(100);
     addButton->setMaximumWidth(150);
     connect(addButton, &QPushButton::clicked, this, &OutputChannelTab::addChannel);
-    buttonLayout->addWidget(addButton, 0, Qt::AlignLeft);
     pageLayout->addWidget(addButton);
     
     QGridLayout *channelDataLayout = new QGridLayout();
@@ -23,13 +21,7 @@ OutputChannelTab::OutputChannelTab(QWidget *parent): QWidget(parent) {
 
     channelInformationPanel = new ChannelInformationPanel();
     channelInformationPanel->setHidden(true);
-    // channelInformationPanel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    channelInformationPanelHidden = true;
     channelDataLayout->addWidget(channelInformationPanel,0,1,-1,1);
-
-    // taskbar = new Taskbar();
-    // taskbar->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    // channelDataLayout->addWidget(taskbar, 0, Qt::AlignRight | Qt::AlignTop);
 
     pageLayout->addLayout(channelDataLayout);
 
@@ -52,7 +44,5 @@ void OutputChannelTab::deleteChannel(QString channelName) {
 }
 
 void OutputChannelTab::instantiateChannelInformationPanel(ChannelListWidgetItem *channelListWidgetItem) {
-    channelInformationPanelHidden = !channelInformationPanelHidden;
-    // channelInformationPanel->setChannelInformation(channelListWidgetItem);
     channelInformationPanel->setHidden(false);
 }

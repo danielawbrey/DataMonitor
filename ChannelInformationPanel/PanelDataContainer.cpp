@@ -1,9 +1,6 @@
 #include "PanelDataContainer.h"
 
 PanelDataContainer::PanelDataContainer(QWidget *parent) : QWidget(parent) {
-    setMinimumWidth(300);
-    setMaximumWidth(400);
-
     groupBox = new QGroupBox("Channel Information", this);
     groupBox->setMaximumHeight(400);
 
@@ -42,4 +39,7 @@ PanelDataContainer::PanelDataContainer(QWidget *parent) : QWidget(parent) {
     QVBoxLayout *parentLayout = new QVBoxLayout();
     parentLayout->addWidget(groupBox);
     setLayout(parentLayout);
+
+    setMinimumWidth(300);
+    setMaximumWidth(400);
 };
