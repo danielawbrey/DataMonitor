@@ -11,9 +11,9 @@
 #include <QHBoxLayout>
 #include <QPushButton>
 #include <QListWidget>
-#include <QVBoxLayout>
+#include <QGridLayout>
 #include <QListWidgetItem>
-#include <string>
+#include <QString>
 
 class OutputChannelTab: public QWidget {
     Q_OBJECT
@@ -28,8 +28,8 @@ class OutputChannelTab: public QWidget {
         QListWidget *channelList;
         ChannelListWidgetItem *channelListWidgetItem;
         ChannelInformationPanel *channelInformationPanel;
-        bool channelInformationPanelHidden;
         Taskbar *taskbar;
+        bool channelInformationPanelHidden;
 };
 
 #endif

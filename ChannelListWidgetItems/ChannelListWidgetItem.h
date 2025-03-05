@@ -9,7 +9,6 @@
 #include <QPushButton>
 #include <QLineEdit>
 #include <QLabel>
-#include <string>
 
 class ChannelListWidgetItem: public QWidget {
     // Q_OBJECT
