@@ -7,6 +7,7 @@ PanelDataContainer::PanelDataContainer(QWidget *parent) : QWidget(parent) {
     QVBoxLayout *layout = new QVBoxLayout();
 
     QPushButton *applyChangesButton = new QPushButton("Apply changes");
+    connect(applyChangesButton, &QPushButton::clicked, this, &PanelDataContainer::updateChannel);
     applyChangesButton->setMinimumWidth(125);
     layout->addWidget(applyChangesButton, 0, Qt::AlignRight);
 
@@ -43,3 +44,25 @@ PanelDataContainer::PanelDataContainer(QWidget *parent) : QWidget(parent) {
     setMinimumWidth(300);
     setMaximumWidth(400);
 };
+
+void PanelDataContainer::showChannelInfo() {
+    std::cout << "PanelDataContainer::showChannelInfo()" << std::endl;
+}
+
+void PanelDataContainer::showCommsConfig() {
+    std::cout << "PanelDataContainer::showCommsConfig()" << std::endl;
+}
+
+void PanelDataContainer::showCommsData() {
+    std::cout << "PanelDataContainer::showCommsData()" << std::endl;
+}
+
+void PanelDataContainer::setPanelData(int rangeMin, int rangeMax, QString channelName) {
+    this->rangeMax->setText(QString::number(rangeMax));
+    this->rangeMin->setText(QString::number(rangeMin));
+    this->channelName->setText(channelName);
+}
+
+void PanelDataContainer::updateChannel() {
+    emit valueChanged(rangeMin->text(), rangeMax->text(), channelName->text());
+}

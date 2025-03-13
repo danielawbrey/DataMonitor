@@ -15,6 +15,15 @@ InputChannelTab::InputChannelTab(QWidget *parent) : QWidget(parent) {
     connect(channelList, &QListWidget::itemClicked, this, [this](QListWidgetItem *clickedItem) {
         if (clickedItem) {
             instantiateChannelInformationPanel(channelListWidgetItem);
+
+            connect(channelInformationPanel->panelDataContainer, &PanelDataContainer::valueChanged, this, [this](QString rangeMin, 
+                                                                                                                 QString rangeMax, 
+                                                                                                                 QString channelName) {
+                channelListWidgetItem->setChannelName(channelName);
+                channelListWidgetItem->setSliderMaximumValue(rangeMax.toInt());
+                channelListWidgetItem->setSliderMinimumValue(rangeMin.toInt());
+            });
+        
         }
     });
     channelDataLayout->addWidget(channelList, 0,0,1,1);
@@ -33,6 +42,7 @@ void InputChannelTab::addChannel() {
     connect(channelListWidgetItem->deleteButton, &QPushButton::clicked, this, [this]() {
         deleteChannel(channelListWidgetItem->getChannelName());
     });
+
     QListWidgetItem *item = new QListWidgetItem(channelList);
     item->setSizeHint(channelListWidgetItem->sizeHint());
     channelList->addItem(item);
@@ -45,4 +55,5 @@ void InputChannelTab::deleteChannel(QString channelName) {
 
 void InputChannelTab::instantiateChannelInformationPanel(ChannelListWidgetItem *channelListWidgetItem) {
     channelInformationPanel->setHidden(false);
+    channelInformationPanel->setChannelInformation(channelListWidgetItem);
 }

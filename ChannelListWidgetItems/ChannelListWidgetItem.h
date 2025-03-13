@@ -21,6 +21,9 @@ class ChannelListWidgetItem: public QWidget {
         void setSliderValue();
         int getSliderMinimumValue();
         int getSliderMaximumValue();
+        void setSliderMinimumValue(int rangeMin);
+        void setSliderMaximumValue(int rangeMax);
+        void setChannelName(QString channelName);
         // void deleteChannel();
         QString getChannelName();
 
