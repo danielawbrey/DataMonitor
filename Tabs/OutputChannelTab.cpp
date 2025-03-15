@@ -12,22 +12,23 @@ OutputChannelTab::OutputChannelTab(QWidget *parent): QWidget(parent) {
     QGridLayout *channelDataLayout = new QGridLayout();
 
     channelList = new QListWidget();
-    connect(channelList, &QListWidget::itemClicked, this, [this](QListWidgetItem *clickedItem) {
-        if (clickedItem) {
-            instantiateChannelInformationPanel(channelListWidgetItem);
+    connect(channelList, &QListWidget::itemClicked, this, [this]() {
+        QListWidgetItem *clickedItem = channelList->currentItem();
+        if(clickedItem) {
+            ChannelListWidgetItem* clickedListItem = clickedItem->data(Qt::UserRole).value<ChannelListWidgetItem*>();
+            instantiateChannelInformationPanel(clickedListItem);
 
             connect(channelInformationPanel->panelDataContainer, &PanelDataContainer::valueChanged, this, [this](QString rangeMin, 
                                                                                                                  QString rangeMax, 
                                                                                                                  QString channelName) {
-                QListWidgetItem* currentItem = channelList->currentItem();
-                if(currentItem) {
-                    ChannelListWidgetItem* listItem = currentItem->data(Qt::UserRole).value<ChannelListWidgetItem*>();
+                QListWidgetItem* updatedListItem = channelList->currentItem();
+                if(updatedListItem) {
+                    ChannelListWidgetItem *listItem = updatedListItem->data(Qt::UserRole).value<ChannelListWidgetItem*>();
                     listItem->setChannelName(channelName);
                     listItem->setSliderMaximumValue(rangeMax.toInt());
                     listItem->setSliderMinimumValue(rangeMin.toInt());
                 }
             });
-
         }
     });
 
