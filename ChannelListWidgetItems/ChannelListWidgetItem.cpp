@@ -43,16 +43,16 @@ QString ChannelListWidgetItem::getChannelName() {
 }
 
 void ChannelListWidgetItem::setSliderMinimumValue(int rangeMin) {
-    std::cout << "New max value " << rangeMin << std::endl;
+    // std::cout << "New max value " << rangeMin << std::endl;
     slider->setMinimum(rangeMin);
 }
 
 void ChannelListWidgetItem::setSliderMaximumValue(int rangeMax) {
-    std::cout << "New min value " << rangeMax << std::endl;
+    // std::cout << "New min value " << rangeMax << std::endl;
     slider->setMaximum(rangeMax);
 }
 
 void ChannelListWidgetItem::setChannelName(QString channelName) {
-    std::cout << "New name " << channelName.toStdString() << std::endl;
+    // std::cout << "New name " << channelName.toStdString() << std::endl;
     label->setText(channelName);
 }

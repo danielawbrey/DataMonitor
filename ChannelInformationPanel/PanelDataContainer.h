@@ -27,6 +27,7 @@ class PanelDataContainer : public QWidget {
     
     signals:
         void valueChanged(QString rangeMin, QString rangeMax, QString channelName);
+        // void valueChanged(QString rangeMin, QString rangeMax, QString channelName);
 };
 
 #endif

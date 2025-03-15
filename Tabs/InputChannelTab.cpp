@@ -19,13 +19,18 @@ InputChannelTab::InputChannelTab(QWidget *parent) : QWidget(parent) {
             connect(channelInformationPanel->panelDataContainer, &PanelDataContainer::valueChanged, this, [this](QString rangeMin, 
                                                                                                                  QString rangeMax, 
                                                                                                                  QString channelName) {
-                channelListWidgetItem->setChannelName(channelName);
-                channelListWidgetItem->setSliderMaximumValue(rangeMax.toInt());
-                channelListWidgetItem->setSliderMinimumValue(rangeMin.toInt());
+                QListWidgetItem* currentItem = channelList->currentItem();
+                if(currentItem) {
+                    ChannelListWidgetItem* listItem = currentItem->data(Qt::UserRole).value<ChannelListWidgetItem*>();
+                    listItem->setChannelName(channelName);
+                    listItem->setSliderMaximumValue(rangeMax.toInt());
+                    listItem->setSliderMinimumValue(rangeMin.toInt());
+                }
             });
-        
+
         }
     });
+    
     channelDataLayout->addWidget(channelList, 0,0,1,1);
 
     channelInformationPanel = new ChannelInformationPanel();
@@ -39,13 +44,14 @@ InputChannelTab::InputChannelTab(QWidget *parent) : QWidget(parent) {
 
 void InputChannelTab::addChannel() {
     channelListWidgetItem = new ChannelListWidgetItem("Lorem Ipsum");
-    connect(channelListWidgetItem->deleteButton, &QPushButton::clicked, this, [this]() {
-        deleteChannel(channelListWidgetItem->getChannelName());
-    });
+    // connect(channelListWidgetItem->deleteButton, &QPushButton::clicked, this, [this]() {
+    //     deleteChannel(channelListWidgetItem->getChannelName());
+    // });
 
     QListWidgetItem *item = new QListWidgetItem(channelList);
     item->setSizeHint(channelListWidgetItem->sizeHint());
     channelList->addItem(item);
+    item->setData(Qt::UserRole, QVariant::fromValue<ChannelListWidgetItem*>(channelListWidgetItem));
     channelList->setItemWidget(item, channelListWidgetItem);
 }
 
