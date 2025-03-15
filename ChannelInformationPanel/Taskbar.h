@@ -14,7 +14,7 @@ class Taskbar : public QFrame
 public:
     explicit Taskbar(QFrame *parent = nullptr);
     void hidePanel();
-    QPushButton *channelInfoButton, *commsConfigButton, *commsDataButton, *exitButton;
+    QPushButton *channelInfoButton, *commsConfigButton, *commsDataButton, *hideButton;
 };
 
 #endif // TASKBAR_H

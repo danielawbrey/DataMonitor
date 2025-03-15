@@ -5,31 +5,30 @@
 #include "Taskbar.h"
 #include "PanelDataContainer.h"
 
-#include <QVBoxLayout>
-#include <QHBoxLayout>
+#include <iostream>
 #include <QGridLayout>
-#include <QWidget>
 #include <QFrame>
-#include <QLineEdit>
-#include <QPushButton>
-#include <QLabel>
-#include <QGroupBox>
-#include <QIcon>
-#include <QPixmap>
-#include <QSize>
 
-class ChannelInformationPanel: public QFrame {
+class ChannelInformationPanel: public QFrame {    
     public:
-        explicit ChannelInformationPanel(QFrame *parent = nullptr);
-        // void setChannelInformation(ChannelListWidgetItem *channelListWidgetItem);
-        void hideTab();
-
-    private:
-        // QLineEdit *rangeMin, *rangeMax, *channelName;
-        // QGroupBox *groupBox;
+        enum channelDiplay { channelInformation = 1, channelMetrics = 2, channelProperties = 3 };
+        
         Taskbar *taskbar;
         PanelDataContainer *panelDataContainer;
-        bool hidden = false;
+
+        explicit ChannelInformationPanel(QFrame *parent = nullptr);
+        void setChannelInformation(ChannelListWidgetItem *channelListWidgetItem);
+        void hideTab();
+        void showChannelInfo();
+        void showCommsConfig();
+        void showCommsData();
+        void switchPanelDisplay(int channelDisplayType);
+
+    private:
+        bool dataPanelHidden = false;
+
+    signals:
+        void valueChanged(int newValue);
 };
 
 #endif

@@ -3,6 +3,7 @@
 
 #include "./ChannelListWidgetItems/ChannelListWidgetItem.h"
 #include "./ChannelInformationPanel/ChannelInformationPanel.h"
+#include "./ChannelInformationPanel/PanelDataContainer.h"
 #include "./ChannelInformationPanel/Taskbar.h"
 
 #include <iostream>
@@ -23,6 +24,7 @@ class InputChannelTab: public QWidget {
         void addChannel();
         void deleteChannel(QString channelName);
         void instantiateChannelInformationPanel(ChannelListWidgetItem *channelListWidgetItem);
+        void valueChanged(QString rangeMin, QString rangeMax, QString channelName);
 
     private:
         QListWidget *channelList;

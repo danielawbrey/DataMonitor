@@ -3,7 +3,9 @@
 ChannelListWidgetItem::ChannelListWidgetItem(QString name, QWidget *parent) : QWidget(parent), channelName(name) {
     QHBoxLayout *layout = new QHBoxLayout();
 
-    QLabel *label = new QLabel(name);
+    label = new QLabel(name);
+    label->setMinimumWidth(100);
+    label->setMaximumWidth(150);
     layout->addWidget(label);
 
     sliderValue = new QLineEdit();
@@ -39,5 +41,17 @@ int ChannelListWidgetItem::getSliderMaximumValue() {
 }
 
 QString ChannelListWidgetItem::getChannelName() {
-    return channelName;
+    return label->text();
+}
+
+void ChannelListWidgetItem::setSliderMinimumValue(int rangeMin) {
+    slider->setMinimum(rangeMin);
+}
+
+void ChannelListWidgetItem::setSliderMaximumValue(int rangeMax) {
+    slider->setMaximum(rangeMax);
+}
+
+void ChannelListWidgetItem::setChannelName(QString channelName) {
+    label->setText(channelName);
 }

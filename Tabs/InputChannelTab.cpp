@@ -2,35 +2,41 @@
 
 InputChannelTab::InputChannelTab(QWidget *parent) : QWidget(parent) {
     QVBoxLayout *pageLayout = new QVBoxLayout();
-    QHBoxLayout *buttonLayout = new QHBoxLayout();
-
+    
     QPushButton *addButton = new QPushButton("Add Channel");
     addButton->setMinimumWidth(100);
     addButton->setMaximumWidth(150);
     connect(addButton, &QPushButton::clicked, this, &InputChannelTab::addChannel);
-    buttonLayout->addWidget(addButton, 0, Qt::AlignLeft);
     pageLayout->addWidget(addButton);
     
     QGridLayout *channelDataLayout = new QGridLayout();
 
     channelList = new QListWidget();
-    channelList->setMinimumWidth(150);
-    connect(channelList, &QListWidget::itemClicked, this, [this](QListWidgetItem *clickedItem) {
-        if (clickedItem) {
-            instantiateChannelInformationPanel(channelListWidgetItem);
+    connect(channelList, &QListWidget::itemClicked, this, [this]() {
+        QListWidgetItem *clickedItem = channelList->currentItem();
+        if(clickedItem) {
+            ChannelListWidgetItem* clickedListItem = clickedItem->data(Qt::UserRole).value<ChannelListWidgetItem*>();
+            instantiateChannelInformationPanel(clickedListItem);
+
+            connect(channelInformationPanel->panelDataContainer, &PanelDataContainer::valueChanged, this, [this](QString rangeMin, 
+                                                                                                                 QString rangeMax, 
+                                                                                                                 QString channelName) {
+                QListWidgetItem* updatedListItem = channelList->currentItem();
+                if(updatedListItem) {
+                    ChannelListWidgetItem *listItem = updatedListItem->data(Qt::UserRole).value<ChannelListWidgetItem*>();
+                    listItem->setChannelName(channelName);
+                    listItem->setSliderMaximumValue(rangeMax.toInt());
+                    listItem->setSliderMinimumValue(rangeMin.toInt());
+                }
+            });
         }
     });
+    
     channelDataLayout->addWidget(channelList, 0,0,1,1);
 
     channelInformationPanel = new ChannelInformationPanel();
     channelInformationPanel->setHidden(true);
-    channelInformationPanel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    channelInformationPanelHidden = true;
     channelDataLayout->addWidget(channelInformationPanel,0,1,-1,1);
-
-    // taskbar = new Taskbar();
-    // taskbar->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    // channelDataLayout->addWidget(taskbar, 0, Qt::AlignRight | Qt::AlignTop);
 
     pageLayout->addLayout(channelDataLayout);
 
@@ -39,12 +45,14 @@ InputChannelTab::InputChannelTab(QWidget *parent) : QWidget(parent) {
 
 void InputChannelTab::addChannel() {
     channelListWidgetItem = new ChannelListWidgetItem("Lorem Ipsum");
-    connect(channelListWidgetItem->deleteButton, &QPushButton::clicked, this, [this]() {
-        deleteChannel(channelListWidgetItem->getChannelName());
-    });
+    // connect(channelListWidgetItem->deleteButton, &QPushButton::clicked, this, [this]() {
+    //     deleteChannel(channelListWidgetItem->getChannelName());
+    // });
+
     QListWidgetItem *item = new QListWidgetItem(channelList);
     item->setSizeHint(channelListWidgetItem->sizeHint());
     channelList->addItem(item);
+    item->setData(Qt::UserRole, QVariant::fromValue<ChannelListWidgetItem*>(channelListWidgetItem));
     channelList->setItemWidget(item, channelListWidgetItem);
 }
 
@@ -53,6 +61,6 @@ void InputChannelTab::deleteChannel(QString channelName) {
 }
 
 void InputChannelTab::instantiateChannelInformationPanel(ChannelListWidgetItem *channelListWidgetItem) {
-    // channelInformationPanel->setChannelInformation(channelListWidgetItem);
     channelInformationPanel->setHidden(false);
+    channelInformationPanel->setChannelInformation(channelListWidgetItem);
 }
