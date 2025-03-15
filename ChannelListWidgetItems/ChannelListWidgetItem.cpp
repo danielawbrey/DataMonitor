@@ -4,6 +4,8 @@ ChannelListWidgetItem::ChannelListWidgetItem(QString name, QWidget *parent) : QW
     QHBoxLayout *layout = new QHBoxLayout();
 
     label = new QLabel(name);
+    label->setMinimumWidth(100);
+    label->setMaximumWidth(150);
     layout->addWidget(label);
 
     sliderValue = new QLineEdit();

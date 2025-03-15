@@ -27,7 +27,6 @@ InputChannelTab::InputChannelTab(QWidget *parent) : QWidget(parent) {
                     listItem->setSliderMinimumValue(rangeMin.toInt());
                 }
             });
-
         }
     });
     
