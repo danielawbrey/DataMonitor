@@ -58,7 +58,8 @@ SOURCES       = main.cpp \
 		ChannelListWidgetItems/ChannelListWidgetItem.cpp \
 		ChannelInformationPanel/ChannelInformationPanel.cpp \
 		ChannelInformationPanel/Taskbar.cpp \
-		ChannelInformationPanel/PanelDataContainer.cpp moc_InputChannelTab.cpp \
+		ChannelInformationPanel/PanelDataContainer.cpp \
+		UDP/UdpClient.cpp moc_InputChannelTab.cpp \
 		moc_OutputChannelTab.cpp \
 		moc_Taskbar.cpp \
 		moc_PanelDataContainer.cpp
@@ -69,6 +70,7 @@ OBJECTS       = main.o \
 		ChannelInformationPanel.o \
 		Taskbar.o \
 		PanelDataContainer.o \
+		UdpClient.o \
 		moc_InputChannelTab.o \
 		moc_OutputChannelTab.o \
 		moc_Taskbar.o \
@@ -143,13 +145,15 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/spec_pre.prf \
 		ChannelListWidgetItems/ChannelListWidgetItem.h \
 		ChannelInformationPanel/ChannelInformationPanel.h \
 		ChannelInformationPanel/Taskbar.h \
-		ChannelInformationPanel/PanelDataContainer.h main.cpp \
+		ChannelInformationPanel/PanelDataContainer.h \
+		UDP/UdpClient.h main.cpp \
 		Tabs/InputChannelTab.cpp \
 		Tabs/OutputChannelTab.cpp \
 		ChannelListWidgetItems/ChannelListWidgetItem.cpp \
 		ChannelInformationPanel/ChannelInformationPanel.cpp \
 		ChannelInformationPanel/Taskbar.cpp \
-		ChannelInformationPanel/PanelDataContainer.cpp
+		ChannelInformationPanel/PanelDataContainer.cpp \
+		UDP/UdpClient.cpp
 QMAKE_TARGET  = main
 DESTDIR       = 
 TARGET        = main
@@ -315,8 +319,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents Tabs/InputChannelTab.h Tabs/OutputChannelTab.h ChannelListWidgetItems/ChannelListWidgetItem.h ChannelInformationPanel/ChannelInformationPanel.h ChannelInformationPanel/Taskbar.h ChannelInformationPanel/PanelDataContainer.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp Tabs/InputChannelTab.cpp Tabs/OutputChannelTab.cpp ChannelListWidgetItems/ChannelListWidgetItem.cpp ChannelInformationPanel/ChannelInformationPanel.cpp ChannelInformationPanel/Taskbar.cpp ChannelInformationPanel/PanelDataContainer.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents Tabs/InputChannelTab.h Tabs/OutputChannelTab.h ChannelListWidgetItems/ChannelListWidgetItem.h ChannelInformationPanel/ChannelInformationPanel.h ChannelInformationPanel/Taskbar.h ChannelInformationPanel/PanelDataContainer.h UDP/UdpClient.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp Tabs/InputChannelTab.cpp Tabs/OutputChannelTab.cpp ChannelListWidgetItems/ChannelListWidgetItem.cpp ChannelInformationPanel/ChannelInformationPanel.cpp ChannelInformationPanel/Taskbar.cpp ChannelInformationPanel/PanelDataContainer.cpp UDP/UdpClient.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -353,6 +357,7 @@ compiler_moc_header_clean:
 	-$(DEL_FILE) moc_InputChannelTab.cpp moc_OutputChannelTab.cpp moc_Taskbar.cpp moc_PanelDataContainer.cpp
 moc_InputChannelTab.cpp: Tabs/InputChannelTab.h \
 		ChannelListWidgetItems/ChannelListWidgetItem.h \
+		UDP/UdpClient.h \
 		ChannelInformationPanel/ChannelInformationPanel.h \
 		ChannelInformationPanel/Taskbar.h \
 		ChannelInformationPanel/PanelDataContainer.h \
@@ -363,6 +368,7 @@ moc_InputChannelTab.cpp: Tabs/InputChannelTab.h \
 moc_OutputChannelTab.cpp: Tabs/OutputChannelTab.h \
 		ChannelInformationPanel/ChannelInformationPanel.h \
 		ChannelListWidgetItems/ChannelListWidgetItem.h \
+		UDP/UdpClient.h \
 		ChannelInformationPanel/Taskbar.h \
 		ChannelInformationPanel/PanelDataContainer.h \
 		moc_predefs.h \
@@ -397,6 +403,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 
 main.o: main.cpp Tabs/InputChannelTab.h \
 		ChannelListWidgetItems/ChannelListWidgetItem.h \
+		UDP/UdpClient.h \
 		ChannelInformationPanel/ChannelInformationPanel.h \
 		ChannelInformationPanel/Taskbar.h \
 		ChannelInformationPanel/PanelDataContainer.h \
@@ -405,6 +412,7 @@ main.o: main.cpp Tabs/InputChannelTab.h \
 
 InputChannelTab.o: Tabs/InputChannelTab.cpp Tabs/InputChannelTab.h \
 		ChannelListWidgetItems/ChannelListWidgetItem.h \
+		UDP/UdpClient.h \
 		ChannelInformationPanel/ChannelInformationPanel.h \
 		ChannelInformationPanel/Taskbar.h \
 		ChannelInformationPanel/PanelDataContainer.h
@@ -413,15 +421,18 @@ InputChannelTab.o: Tabs/InputChannelTab.cpp Tabs/InputChannelTab.h \
 OutputChannelTab.o: Tabs/OutputChannelTab.cpp Tabs/OutputChannelTab.h \
 		ChannelInformationPanel/ChannelInformationPanel.h \
 		ChannelListWidgetItems/ChannelListWidgetItem.h \
+		UDP/UdpClient.h \
 		ChannelInformationPanel/Taskbar.h \
 		ChannelInformationPanel/PanelDataContainer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o OutputChannelTab.o Tabs/OutputChannelTab.cpp
 
-ChannelListWidgetItem.o: ChannelListWidgetItems/ChannelListWidgetItem.cpp ChannelListWidgetItems/ChannelListWidgetItem.h
+ChannelListWidgetItem.o: ChannelListWidgetItems/ChannelListWidgetItem.cpp ChannelListWidgetItems/ChannelListWidgetItem.h \
+		UDP/UdpClient.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ChannelListWidgetItem.o ChannelListWidgetItems/ChannelListWidgetItem.cpp
 
 ChannelInformationPanel.o: ChannelInformationPanel/ChannelInformationPanel.cpp ChannelInformationPanel/ChannelInformationPanel.h \
 		ChannelListWidgetItems/ChannelListWidgetItem.h \
+		UDP/UdpClient.h \
 		ChannelInformationPanel/Taskbar.h \
 		ChannelInformationPanel/PanelDataContainer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ChannelInformationPanel.o ChannelInformationPanel/ChannelInformationPanel.cpp
@@ -431,6 +442,9 @@ Taskbar.o: ChannelInformationPanel/Taskbar.cpp ChannelInformationPanel/Taskbar.h
 
 PanelDataContainer.o: ChannelInformationPanel/PanelDataContainer.cpp ChannelInformationPanel/PanelDataContainer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o PanelDataContainer.o ChannelInformationPanel/PanelDataContainer.cpp
+
+UdpClient.o: UDP/UdpClient.cpp UDP/UdpClient.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o UdpClient.o UDP/UdpClient.cpp
 
 moc_InputChannelTab.o: moc_InputChannelTab.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_InputChannelTab.o moc_InputChannelTab.cpp

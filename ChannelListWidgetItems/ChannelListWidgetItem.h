@@ -1,6 +1,8 @@
 #ifndef CHANNELLISTWIDGETITEM_H
 #define CHANNELLISTWIDGETITEM_H
 
+#include "./UDP/UdpClient.h"
+
 #include <iostream>
 #include <QWidget>
 #include <QHBoxLayout>
@@ -33,6 +35,7 @@ class ChannelListWidgetItem: public QWidget {
         QSlider *slider;
         QLineEdit *sliderValue;
         QLabel *label;
+        UdpClient *client;
 };
 
 #endif

@@ -5,6 +5,7 @@ SOURCES += main.cpp \
            ./ChannelInformationPanel/ChannelInformationPanel.cpp \
            ./ChannelInformationPanel/Taskbar.cpp \
            ./ChannelInformationPanel/PanelDataContainer.cpp \
+           ./UDP/UdpClient.cpp \
 
 HEADERS += ./Tabs/InputChannelTab.h \
            ./Tabs/OutputChannelTab.h \
@@ -12,5 +13,6 @@ HEADERS += ./Tabs/InputChannelTab.h \
            ./ChannelInformationPanel/ChannelInformationPanel.h \
            ./ChannelInformationPanel/Taskbar.h \
            ./ChannelInformationPanel/PanelDataContainer.h \
+           ./UDP/UdpClient.h \
 
 QT += widgets

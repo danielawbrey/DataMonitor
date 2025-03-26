@@ -1,6 +1,8 @@
 #include "ChannelListWidgetItem.h"
 
 ChannelListWidgetItem::ChannelListWidgetItem(QString name, QWidget *parent) : QWidget(parent), channelName(name) {
+    client = new UdpClient();
+
     QHBoxLayout *layout = new QHBoxLayout();
 
     label = new QLabel(name);
