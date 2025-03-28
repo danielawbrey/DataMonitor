@@ -1,6 +1,10 @@
 #ifndef PANELDATACONTAINER_H
 #define PANELDATACONTAINER_H
 
+// #include "./StackPanelWidgets/ChannelInfoWidget.h"
+// #include "./StackPanelWidgets/CommsConfigWidget.h"
+// #include "./StackPanelWidgets/CommsDataWidget.h"
+
 #include <iostream>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -27,7 +31,6 @@ class PanelDataContainer : public QWidget {
     
     signals:
         void valueChanged(QString rangeMin, QString rangeMax, QString channelName);
-        // void valueChanged(QString rangeMin, QString rangeMax, QString channelName);
 };
 
 #endif

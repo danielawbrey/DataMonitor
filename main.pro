@@ -6,6 +6,9 @@ SOURCES += main.cpp \
            ./ChannelInformationPanel/Taskbar.cpp \
            ./ChannelInformationPanel/PanelDataContainer.cpp \
            ./UDP/UdpClient.cpp \
+           ./ChannelInformationPanel/StackPanelWidgets/ChannelInfoWidget.cpp \
+           ./ChannelInformationPanel/StackPanelWidgets/CommsConfigWidget.cpp \
+           ./ChannelInformationPanel/StackPanelWidgets/CommsDataWidget.cpp \
 
 HEADERS += ./Tabs/InputChannelTab.h \
            ./Tabs/OutputChannelTab.h \
@@ -14,5 +17,8 @@ HEADERS += ./Tabs/InputChannelTab.h \
            ./ChannelInformationPanel/Taskbar.h \
            ./ChannelInformationPanel/PanelDataContainer.h \
            ./UDP/UdpClient.h \
+            ./ChannelInformationPanel/StackPanelWidgets/ChannelInfoWidget.h \
+           ./ChannelInformationPanel/StackPanelWidgets/ChannelConfigWidget.h \
+           ./ChannelInformationPanel/StackPanelWidgets/ChannelDataWidget.h \
 
 QT += widgets

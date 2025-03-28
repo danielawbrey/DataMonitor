@@ -59,7 +59,10 @@ SOURCES       = main.cpp \
 		ChannelInformationPanel/ChannelInformationPanel.cpp \
 		ChannelInformationPanel/Taskbar.cpp \
 		ChannelInformationPanel/PanelDataContainer.cpp \
-		UDP/UdpClient.cpp moc_InputChannelTab.cpp \
+		UDP/UdpClient.cpp \
+		ChannelInformationPanel/StackPanelWidgets/ChannelInfoWidget.cpp \
+		ChannelInformationPanel/StackPanelWidgets/CommsConfigWidget.cpp \
+		ChannelInformationPanel/StackPanelWidgets/CommsDataWidget.cpp moc_InputChannelTab.cpp \
 		moc_OutputChannelTab.cpp \
 		moc_Taskbar.cpp \
 		moc_PanelDataContainer.cpp
@@ -71,6 +74,9 @@ OBJECTS       = main.o \
 		Taskbar.o \
 		PanelDataContainer.o \
 		UdpClient.o \
+		ChannelInfoWidget.o \
+		CommsConfigWidget.o \
+		CommsDataWidget.o \
 		moc_InputChannelTab.o \
 		moc_OutputChannelTab.o \
 		moc_Taskbar.o \
@@ -146,14 +152,20 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/spec_pre.prf \
 		ChannelInformationPanel/ChannelInformationPanel.h \
 		ChannelInformationPanel/Taskbar.h \
 		ChannelInformationPanel/PanelDataContainer.h \
-		UDP/UdpClient.h main.cpp \
+		UDP/UdpClient.h \
+		ChannelInformationPanel/StackPanelWidgets/ChannelInfoWidget.h \
+		./ChannelInformationPanel/StackPanelWidgets/ChannelConfigWidget.h \
+		./ChannelInformationPanel/StackPanelWidgets/ChannelDataWidget.h main.cpp \
 		Tabs/InputChannelTab.cpp \
 		Tabs/OutputChannelTab.cpp \
 		ChannelListWidgetItems/ChannelListWidgetItem.cpp \
 		ChannelInformationPanel/ChannelInformationPanel.cpp \
 		ChannelInformationPanel/Taskbar.cpp \
 		ChannelInformationPanel/PanelDataContainer.cpp \
-		UDP/UdpClient.cpp
+		UDP/UdpClient.cpp \
+		ChannelInformationPanel/StackPanelWidgets/ChannelInfoWidget.cpp \
+		ChannelInformationPanel/StackPanelWidgets/CommsConfigWidget.cpp \
+		ChannelInformationPanel/StackPanelWidgets/CommsDataWidget.cpp
 QMAKE_TARGET  = main
 DESTDIR       = 
 TARGET        = main
@@ -319,8 +331,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents Tabs/InputChannelTab.h Tabs/OutputChannelTab.h ChannelListWidgetItems/ChannelListWidgetItem.h ChannelInformationPanel/ChannelInformationPanel.h ChannelInformationPanel/Taskbar.h ChannelInformationPanel/PanelDataContainer.h UDP/UdpClient.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp Tabs/InputChannelTab.cpp Tabs/OutputChannelTab.cpp ChannelListWidgetItems/ChannelListWidgetItem.cpp ChannelInformationPanel/ChannelInformationPanel.cpp ChannelInformationPanel/Taskbar.cpp ChannelInformationPanel/PanelDataContainer.cpp UDP/UdpClient.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents Tabs/InputChannelTab.h Tabs/OutputChannelTab.h ChannelListWidgetItems/ChannelListWidgetItem.h ChannelInformationPanel/ChannelInformationPanel.h ChannelInformationPanel/Taskbar.h ChannelInformationPanel/PanelDataContainer.h UDP/UdpClient.h ChannelInformationPanel/StackPanelWidgets/ChannelInfoWidget.h ./ChannelInformationPanel/StackPanelWidgets/ChannelConfigWidget.h ./ChannelInformationPanel/StackPanelWidgets/ChannelDataWidget.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp Tabs/InputChannelTab.cpp Tabs/OutputChannelTab.cpp ChannelListWidgetItems/ChannelListWidgetItem.cpp ChannelInformationPanel/ChannelInformationPanel.cpp ChannelInformationPanel/Taskbar.cpp ChannelInformationPanel/PanelDataContainer.cpp UDP/UdpClient.cpp ChannelInformationPanel/StackPanelWidgets/ChannelInfoWidget.cpp ChannelInformationPanel/StackPanelWidgets/CommsConfigWidget.cpp ChannelInformationPanel/StackPanelWidgets/CommsDataWidget.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -445,6 +457,15 @@ PanelDataContainer.o: ChannelInformationPanel/PanelDataContainer.cpp ChannelInfo
 
 UdpClient.o: UDP/UdpClient.cpp UDP/UdpClient.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o UdpClient.o UDP/UdpClient.cpp
+
+ChannelInfoWidget.o: ChannelInformationPanel/StackPanelWidgets/ChannelInfoWidget.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ChannelInfoWidget.o ChannelInformationPanel/StackPanelWidgets/ChannelInfoWidget.cpp
+
+CommsConfigWidget.o: ChannelInformationPanel/StackPanelWidgets/CommsConfigWidget.cpp ChannelInformationPanel/StackPanelWidgets/CommsConfigWidget.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o CommsConfigWidget.o ChannelInformationPanel/StackPanelWidgets/CommsConfigWidget.cpp
+
+CommsDataWidget.o: ChannelInformationPanel/StackPanelWidgets/CommsDataWidget.cpp ChannelInformationPanel/StackPanelWidgets/CommsDataWidget.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o CommsDataWidget.o ChannelInformationPanel/StackPanelWidgets/CommsDataWidget.cpp
 
 moc_InputChannelTab.o: moc_InputChannelTab.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_InputChannelTab.o moc_InputChannelTab.cpp

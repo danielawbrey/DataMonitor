@@ -1,6 +1,50 @@
 #include "PanelDataContainer.h"
 
 PanelDataContainer::PanelDataContainer(QWidget *parent) : QWidget(parent) {
+    // groupBox = new QGroupBox("Channel Metrics", this);
+    // groupBox->setMaximumHeight(400);
+
+    // QVBoxLayout *layout = new QVBoxLayout();
+
+    // QHBoxLayout *ipAddressLayout = new QHBoxLayout();
+    // QLabel *ipAddressLabel = new QLabel("IP Address");
+    // ipAddressLayout->addWidget(ipAddressLabel);
+    // QLineEdit *ipAddress = new QLineEdit();
+    // ipAddress->setMaximumWidth(125);
+    // ipAddressLayout->addWidget(ipAddress);
+    // layout->addLayout(ipAddressLayout);
+
+    // QHBoxLayout *portNumberLayout = new QHBoxLayout();
+    // QLabel *nameLabel = new QLabel("Port Number");
+    // portNumberLayout->addWidget(nameLabel);
+    // channelName = new QLineEdit();
+    // channelName->setMaximumWidth(125);
+    // portNumberLayout->addWidget(channelName);
+    // layout->addLayout(portNumberLayout);
+
+    // QHBoxLayout *bufferSizeLayout = new QHBoxLayout();
+    // QLabel *bufferSizeLabel = new QLabel("Buffer Size");
+    // bufferSizeLayout->addWidget(bufferSizeLabel);
+    // QLineEdit *bufferSize = new QLineEdit();
+    // bufferSize->setMaximumWidth(125);
+    // bufferSizeLayout->addWidget(bufferSize);
+    // layout->addLayout(bufferSizeLayout);
+    
+    // groupBox->setLayout(layout);
+
+    // QVBoxLayout *parentLayout = new QVBoxLayout();
+    // parentLayout->addWidget(groupBox);
+    // setLayout(parentLayout);
+
+    // showChannelInfo();
+
+    setMinimumWidth(300);
+    setMaximumWidth(400);
+};
+
+void PanelDataContainer::showChannelInfo() {
+    std::cout << "PanelDataContainer::showChannelInfo()" << std::endl;
+
     groupBox = new QGroupBox("Channel Information", this);
     groupBox->setMaximumHeight(400);
 
@@ -40,21 +84,60 @@ PanelDataContainer::PanelDataContainer(QWidget *parent) : QWidget(parent) {
     QVBoxLayout *parentLayout = new QVBoxLayout();
     parentLayout->addWidget(groupBox);
     setLayout(parentLayout);
-
-    setMinimumWidth(300);
-    setMaximumWidth(400);
-};
-
-void PanelDataContainer::showChannelInfo() {
-    std::cout << "PanelDataContainer::showChannelInfo()" << std::endl;
 }
 
 void PanelDataContainer::showCommsConfig() {
     std::cout << "PanelDataContainer::showCommsConfig()" << std::endl;
+
+    groupBox = new QGroupBox("Channel Communication Properties", this);
+    groupBox->setMaximumHeight(400);
+
+    QVBoxLayout *layout = new QVBoxLayout();
+
+    QHBoxLayout *ipAddressLayout = new QHBoxLayout();
+    QLabel *ipAddressLabel = new QLabel("IP Address");
+    ipAddressLayout->addWidget(ipAddressLabel);
+    QLineEdit *ipAddress = new QLineEdit();
+    ipAddress->setMaximumWidth(125);
+    ipAddressLayout->addWidget(ipAddress);
+    layout->addLayout(ipAddressLayout);
+
+    QHBoxLayout *portNumberLayout = new QHBoxLayout();
+    QLabel *nameLabel = new QLabel("Port Number");
+    portNumberLayout->addWidget(nameLabel);
+    channelName = new QLineEdit();
+    channelName->setMaximumWidth(125);
+    portNumberLayout->addWidget(channelName);
+    layout->addLayout(portNumberLayout);
+
+    QHBoxLayout *bufferSizeLayout = new QHBoxLayout();
+    QLabel *bufferSizeLabel = new QLabel("Buffer Size");
+    bufferSizeLayout->addWidget(bufferSizeLabel);
+    QLineEdit *bufferSize = new QLineEdit();
+    bufferSize->setMaximumWidth(125);
+    bufferSizeLayout->addWidget(bufferSize);
+    layout->addLayout(bufferSizeLayout);
+    
+    groupBox->setLayout(layout);
+
+    QVBoxLayout *parentLayout = new QVBoxLayout();
+    parentLayout->addWidget(groupBox);
+    setLayout(parentLayout);
 }
 
 void PanelDataContainer::showCommsData() {
     std::cout << "PanelDataContainer::showCommsData()" << std::endl;
+
+    groupBox = new QGroupBox("Channel Metrics", this);
+    groupBox->setMaximumHeight(400);
+
+    QVBoxLayout *layout = new QVBoxLayout();
+
+    groupBox->setLayout(layout);
+
+    QVBoxLayout *parentLayout = new QVBoxLayout();
+    parentLayout->addWidget(groupBox);
+    setLayout(parentLayout);
 }
 
 void PanelDataContainer::setPanelData(int rangeMin, int rangeMax, QString channelName) {
