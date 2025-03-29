@@ -1,5 +1,5 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'PanelDataContainer.h'
+** Meta object code from reading C++ file 'ChannelInfoWidget.h'
 **
 ** Created by: The Qt Meta Object Compiler version 68 (Qt 6.4.2)
 **
@@ -7,11 +7,11 @@
 *****************************************************************************/
 
 #include <memory>
-#include "ChannelInformationPanel/PanelDataContainer.h"
+#include "ChannelInformationPanel/StackPanelWidgets/ChannelInfoWidget.h"
 #include <QtGui/qtextcursor.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'PanelDataContainer.h' doesn't include <QObject>."
+#error "The header file 'ChannelInfoWidget.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 68
 #error "This file was generated using the moc from 6.4.2. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -26,9 +26,9 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 namespace {
-struct qt_meta_stringdata_PanelDataContainer_t {
+struct qt_meta_stringdata_ChannelInfoWidget_t {
     uint offsetsAndSizes[12];
-    char stringdata0[19];
+    char stringdata0[18];
     char stringdata1[13];
     char stringdata2[1];
     char stringdata3[9];
@@ -36,17 +36,17 @@ struct qt_meta_stringdata_PanelDataContainer_t {
     char stringdata5[12];
 };
 #define QT_MOC_LITERAL(ofs, len) \
-    uint(sizeof(qt_meta_stringdata_PanelDataContainer_t::offsetsAndSizes) + ofs), len 
-Q_CONSTINIT static const qt_meta_stringdata_PanelDataContainer_t qt_meta_stringdata_PanelDataContainer = {
+    uint(sizeof(qt_meta_stringdata_ChannelInfoWidget_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_ChannelInfoWidget_t qt_meta_stringdata_ChannelInfoWidget = {
     {
-        QT_MOC_LITERAL(0, 18),  // "PanelDataContainer"
-        QT_MOC_LITERAL(19, 12),  // "valueChanged"
-        QT_MOC_LITERAL(32, 0),  // ""
-        QT_MOC_LITERAL(33, 8),  // "rangeMin"
-        QT_MOC_LITERAL(42, 8),  // "rangeMax"
-        QT_MOC_LITERAL(51, 11)   // "channelName"
+        QT_MOC_LITERAL(0, 17),  // "ChannelInfoWidget"
+        QT_MOC_LITERAL(18, 12),  // "valueChanged"
+        QT_MOC_LITERAL(31, 0),  // ""
+        QT_MOC_LITERAL(32, 8),  // "rangeMin"
+        QT_MOC_LITERAL(41, 8),  // "rangeMax"
+        QT_MOC_LITERAL(50, 11)   // "channelName"
     },
-    "PanelDataContainer",
+    "ChannelInfoWidget",
     "valueChanged",
     "",
     "rangeMin",
@@ -56,7 +56,7 @@ Q_CONSTINIT static const qt_meta_stringdata_PanelDataContainer_t qt_meta_stringd
 #undef QT_MOC_LITERAL
 } // unnamed namespace
 
-Q_CONSTINIT static const uint qt_meta_data_PanelDataContainer[] = {
+Q_CONSTINIT static const uint qt_meta_data_ChannelInfoWidget[] = {
 
  // content:
       10,       // revision
@@ -78,15 +78,15 @@ Q_CONSTINIT static const uint qt_meta_data_PanelDataContainer[] = {
        0        // eod
 };
 
-Q_CONSTINIT const QMetaObject PanelDataContainer::staticMetaObject = { {
+Q_CONSTINIT const QMetaObject ChannelInfoWidget::staticMetaObject = { {
     QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
-    qt_meta_stringdata_PanelDataContainer.offsetsAndSizes,
-    qt_meta_data_PanelDataContainer,
+    qt_meta_stringdata_ChannelInfoWidget.offsetsAndSizes,
+    qt_meta_data_ChannelInfoWidget,
     qt_static_metacall,
     nullptr,
-    qt_incomplete_metaTypeArray<qt_meta_stringdata_PanelDataContainer_t,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_ChannelInfoWidget_t,
         // Q_OBJECT / Q_GADGET
-        QtPrivate::TypeAndForceComplete<PanelDataContainer, std::true_type>,
+        QtPrivate::TypeAndForceComplete<ChannelInfoWidget, std::true_type>,
         // method 'valueChanged'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
@@ -96,10 +96,10 @@ Q_CONSTINIT const QMetaObject PanelDataContainer::staticMetaObject = { {
     nullptr
 } };
 
-void PanelDataContainer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void ChannelInfoWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        auto *_t = static_cast<PanelDataContainer *>(_o);
+        auto *_t = static_cast<ChannelInfoWidget *>(_o);
         (void)_t;
         switch (_id) {
         case 0: _t->valueChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3]))); break;
@@ -108,8 +108,8 @@ void PanelDataContainer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (PanelDataContainer::*)(QString , QString , QString );
-            if (_t _q_method = &PanelDataContainer::valueChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+            using _t = void (ChannelInfoWidget::*)(QString , QString , QString );
+            if (_t _q_method = &ChannelInfoWidget::valueChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 0;
                 return;
             }
@@ -117,20 +117,20 @@ void PanelDataContainer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
     }
 }
 
-const QMetaObject *PanelDataContainer::metaObject() const
+const QMetaObject *ChannelInfoWidget::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *PanelDataContainer::qt_metacast(const char *_clname)
+void *ChannelInfoWidget::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_PanelDataContainer.stringdata0))
+    if (!strcmp(_clname, qt_meta_stringdata_ChannelInfoWidget.stringdata0))
         return static_cast<void*>(this);
     return QWidget::qt_metacast(_clname);
 }
 
-int PanelDataContainer::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int ChannelInfoWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QWidget::qt_metacall(_c, _id, _a);
     if (_id < 0)
@@ -148,7 +148,7 @@ int PanelDataContainer::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void PanelDataContainer::valueChanged(QString _t1, QString _t2, QString _t3)
+void ChannelInfoWidget::valueChanged(QString _t1, QString _t2, QString _t3)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);

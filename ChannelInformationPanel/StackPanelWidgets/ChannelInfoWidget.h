@@ -1,6 +1,7 @@
-#ifndef PANELDATACONTAINER_H
-#define PANELDATACONTAINER_H
+#ifndef COMMS_INFO_WIDGET
+#define COMMS_INFO_WIDGET
 
+#include <QWidget>
 #include <iostream>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -11,23 +12,18 @@
 #include <QGroupBox>
 #include <QString>
 
-class PanelDataContainer : public QWidget {
+class ChannelInfoWidget: public QWidget {
     Q_OBJECT
 
     public:
-        PanelDataContainer(QWidget *parent = nullptr);
-        QGroupBox *groupBox;
-        QLineEdit *rangeMin, *rangeMax, *channelName;
-
-        void showChannelInfo();
-        void showCommsConfig();
-        void showCommsData();
+        ChannelInfoWidget(QWidget *parent = nullptr);
         void setPanelData(int rangeMin, int rangeMax, QString channelName);
         void updateChannel();
-    
     signals:
         void valueChanged(QString rangeMin, QString rangeMax, QString channelName);
-        // void valueChanged(QString rangeMin, QString rangeMax, QString channelName);
+    private:
+        QGroupBox *groupBox;
+        QLineEdit *rangeMin, *rangeMax, *channelName;
 };
 
 #endif

@@ -1,13 +1,13 @@
-#include "PanelDataContainer.h"
+#include "ChannelInfoWidget.h"
 
-PanelDataContainer::PanelDataContainer(QWidget *parent) : QWidget(parent) {
+ChannelInfoWidget::ChannelInfoWidget(QWidget *parent) : QWidget(parent) {
     groupBox = new QGroupBox("Channel Information", this);
     groupBox->setMaximumHeight(400);
 
     QVBoxLayout *layout = new QVBoxLayout();
 
     QPushButton *applyChangesButton = new QPushButton("Apply changes");
-    connect(applyChangesButton, &QPushButton::clicked, this, &PanelDataContainer::updateChannel);
+    connect(applyChangesButton, &QPushButton::clicked, this, &ChannelInfoWidget::updateChannel);
     applyChangesButton->setMinimumWidth(125);
     layout->addWidget(applyChangesButton, 0, Qt::AlignRight);
 
@@ -40,29 +40,14 @@ PanelDataContainer::PanelDataContainer(QWidget *parent) : QWidget(parent) {
     QVBoxLayout *parentLayout = new QVBoxLayout();
     parentLayout->addWidget(groupBox);
     setLayout(parentLayout);
-
-    setMinimumWidth(300);
-    setMaximumWidth(400);
 };
 
-void PanelDataContainer::showChannelInfo() {
-    std::cout << "PanelDataContainer::showChannelInfo()" << std::endl;
-}
-
-void PanelDataContainer::showCommsConfig() {
-    std::cout << "PanelDataContainer::showCommsConfig()" << std::endl;
-}
-
-void PanelDataContainer::showCommsData() {
-    std::cout << "PanelDataContainer::showCommsData()" << std::endl;
-}
-
-void PanelDataContainer::setPanelData(int rangeMin, int rangeMax, QString channelName) {
+void ChannelInfoWidget::setPanelData(int rangeMin, int rangeMax, QString channelName) {
     this->rangeMax->setText(QString::number(rangeMax));
     this->rangeMin->setText(QString::number(rangeMin));
     this->channelName->setText(channelName);
 }
 
-void PanelDataContainer::updateChannel() {
+void ChannelInfoWidget::updateChannel() {
     emit valueChanged(rangeMin->text(), rangeMax->text(), channelName->text());
 }

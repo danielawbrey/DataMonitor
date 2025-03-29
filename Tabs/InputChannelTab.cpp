@@ -16,11 +16,14 @@ InputChannelTab::InputChannelTab(QWidget *parent) : QWidget(parent) {
         QListWidgetItem *clickedItem = channelList->currentItem();
         if(clickedItem) {
             ChannelListWidgetItem* clickedListItem = clickedItem->data(Qt::UserRole).value<ChannelListWidgetItem*>();
+
+            channelInformationPanel->setHidden(false);
+
             instantiateChannelInformationPanel(clickedListItem);
 
-            connect(channelInformationPanel->panelDataContainer, &PanelDataContainer::valueChanged, this, [this](QString rangeMin, 
-                                                                                                                 QString rangeMax, 
-                                                                                                                 QString channelName) {
+            connect(channelInformationPanel->infoWidget, &ChannelInfoWidget::valueChanged, this, [this](QString rangeMin, 
+                                                                                                        QString rangeMax, 
+                                                                                                        QString channelName) {
                 QListWidgetItem* updatedListItem = channelList->currentItem();
                 if(updatedListItem) {
                     ChannelListWidgetItem *listItem = updatedListItem->data(Qt::UserRole).value<ChannelListWidgetItem*>();
