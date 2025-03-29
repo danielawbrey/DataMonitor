@@ -4,16 +4,12 @@ ChannelInformationPanel::ChannelInformationPanel(QFrame *parent) : QFrame(parent
     QGridLayout *mainLayout = new QGridLayout();
     mainLayout->setContentsMargins(0, 0, 0, 0);
 
-    // panelDataContainer = new PanelDataContainer();
-    // mainLayout->addWidget(panelDataContainer, 0, 0, 1, 1, Qt::AlignCenter | Qt::AlignTop);
-
     stackWidget = new QStackedWidget();
-
-    ChannelInfoWidget *infoWidget = new ChannelInfoWidget(); 
+    infoWidget = new ChannelInfoWidget(); 
     stackWidget->addWidget(infoWidget);
-    CommsConfigWidget *configWidget = new CommsConfigWidget();
+    configWidget = new CommsConfigWidget();
     stackWidget->addWidget(configWidget);
-    CommsDataWidget *dataWidget = new CommsDataWidget();
+    dataWidget = new CommsDataWidget();
     stackWidget->addWidget(dataWidget);
     mainLayout->addWidget(stackWidget, 0, 0, 1, 1, Qt::AlignCenter | Qt::AlignTop);
 
@@ -39,36 +35,19 @@ ChannelInformationPanel::ChannelInformationPanel(QFrame *parent) : QFrame(parent
 // }
 
 void ChannelInformationPanel::showChannelInfo() {
-    // switchPanelDisplay(1);
     stackWidget->setCurrentIndex(0);
 }
 
 void ChannelInformationPanel::showCommsConfig() {
-    // switchPanelDisplay(2);
     stackWidget->setCurrentIndex(1);
 }
 
 void ChannelInformationPanel::showCommsData() {
-    // switchPanelDisplay(3);
     stackWidget->setCurrentIndex(2);
 }
 
-// void ChannelInformationPanel::switchPanelDisplay(int channelDisplayType) {
-//     switch(channelDisplayType) {
-//         case channelInformation:
-//             panelDataContainer->showChannelInfo();
-//             break;
-//         case channelMetrics:
-//             panelDataContainer->showCommsData();
-//             break;
-//         case channelProperties:
-//             panelDataContainer->showCommsConfig();
-//             break;
-//     }
-// }
-
-// void ChannelInformationPanel::setChannelInformation(ChannelListWidgetItem *channelListWidgetItem) {
-//     panelDataContainer->setPanelData(channelListWidgetItem->getSliderMinimumValue(), 
-//                                      channelListWidgetItem->getSliderMaximumValue(), 
-//                                      channelListWidgetItem->getChannelName());
-// }
+void ChannelInformationPanel::setChannelInformation(ChannelListWidgetItem *channelListWidgetItem) {
+    infoWidget->setPanelData(channelListWidgetItem->getSliderMinimumValue(), 
+                             channelListWidgetItem->getSliderMaximumValue(), 
+                             channelListWidgetItem->getChannelName());    
+}

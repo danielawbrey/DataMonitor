@@ -18,20 +18,20 @@ InputChannelTab::InputChannelTab(QWidget *parent) : QWidget(parent) {
             ChannelListWidgetItem* clickedListItem = clickedItem->data(Qt::UserRole).value<ChannelListWidgetItem*>();
 
             channelInformationPanel->setHidden(false);
-            
-            // instantiateChannelInformationPanel(clickedListItem);
 
-            // connect(channelInformationPanel->panelDataContainer, &PanelDataContainer::valueChanged, this, [this](QString rangeMin, 
-            //                                                                                                      QString rangeMax, 
-            //                                                                                                      QString channelName) {
-            //     QListWidgetItem* updatedListItem = channelList->currentItem();
-            //     if(updatedListItem) {
-            //         ChannelListWidgetItem *listItem = updatedListItem->data(Qt::UserRole).value<ChannelListWidgetItem*>();
-            //         listItem->setChannelName(channelName);
-            //         listItem->setSliderMaximumValue(rangeMax.toInt());
-            //         listItem->setSliderMinimumValue(rangeMin.toInt());
-            //     }
-            // });
+            instantiateChannelInformationPanel(clickedListItem);
+
+            connect(channelInformationPanel->infoWidget, &ChannelInfoWidget::valueChanged, this, [this](QString rangeMin, 
+                                                                                                        QString rangeMax, 
+                                                                                                        QString channelName) {
+                QListWidgetItem* updatedListItem = channelList->currentItem();
+                if(updatedListItem) {
+                    ChannelListWidgetItem *listItem = updatedListItem->data(Qt::UserRole).value<ChannelListWidgetItem*>();
+                    listItem->setChannelName(channelName);
+                    listItem->setSliderMaximumValue(rangeMax.toInt());
+                    listItem->setSliderMinimumValue(rangeMin.toInt());
+                }
+            });
         }
     });
     
@@ -65,5 +65,5 @@ void InputChannelTab::deleteChannel(QString channelName) {
 
 void InputChannelTab::instantiateChannelInformationPanel(ChannelListWidgetItem *channelListWidgetItem) {
     channelInformationPanel->setHidden(false);
-    // channelInformationPanel->setChannelInformation(channelListWidgetItem);
+    channelInformationPanel->setChannelInformation(channelListWidgetItem);
 }

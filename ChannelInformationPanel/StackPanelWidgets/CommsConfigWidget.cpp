@@ -1,12 +1,17 @@
 #include "CommsConfigWidget.h"
 
 CommsConfigWidget::CommsConfigWidget(QWidget *parent) : QWidget(parent) {
-    std::cout << "PanelDataContainer::showCommsConfig()" << std::endl;
+    // std::cout << "PanelDataContainer::showCommsConfig()" << std::endl;
 
     QGroupBox *groupBox = new QGroupBox("Channel Communication Properties", this);
     groupBox->setMaximumHeight(400);
 
     QVBoxLayout *layout = new QVBoxLayout();
+
+    QPushButton *applyChangesButton = new QPushButton("Apply changes");
+    // connect(applyChangesButton, &QPushButton::clicked, this, &ChannelInfoWidget::updateChannel);
+    applyChangesButton->setMinimumWidth(125);
+    layout->addWidget(applyChangesButton, 0, Qt::AlignRight);
 
     QHBoxLayout *ipAddressLayout = new QHBoxLayout();
     QLabel *ipAddressLabel = new QLabel("IP Address");

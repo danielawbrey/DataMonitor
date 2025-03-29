@@ -13,17 +13,17 @@
 #include <QString>
 
 class ChannelInfoWidget: public QWidget {
-    // Q_OBJECT
-    
+    Q_OBJECT
+
     public:
         ChannelInfoWidget(QWidget *parent = nullptr);
         void setPanelData(int rangeMin, int rangeMax, QString channelName);
         void updateChannel();
+    signals:
+        void valueChanged(QString rangeMin, QString rangeMax, QString channelName);
     private:
         QGroupBox *groupBox;
         QLineEdit *rangeMin, *rangeMax, *channelName;
-    // signals:
-    //     void valueChanged(QString rangeMin, QString rangeMax, QString channelName);
 };
 
 #endif

@@ -1,7 +1,7 @@
 #include "ChannelInfoWidget.h"
 
 ChannelInfoWidget::ChannelInfoWidget(QWidget *parent) : QWidget(parent) {
-    std::cout << "PanelDataContainer::showChannelInfo()" << std::endl;
+    // std::cout << "PanelDataContainer::showChannelInfo()" << std::endl;
 
     groupBox = new QGroupBox("Channel Information", this);
     groupBox->setMaximumHeight(400);
@@ -9,7 +9,7 @@ ChannelInfoWidget::ChannelInfoWidget(QWidget *parent) : QWidget(parent) {
     QVBoxLayout *layout = new QVBoxLayout();
 
     QPushButton *applyChangesButton = new QPushButton("Apply changes");
-    // connect(applyChangesButton, &QPushButton::clicked, this, &ChannelInfoWidget::updateChannel);
+    connect(applyChangesButton, &QPushButton::clicked, this, &ChannelInfoWidget::updateChannel);
     applyChangesButton->setMinimumWidth(125);
     layout->addWidget(applyChangesButton, 0, Qt::AlignRight);
 
@@ -50,6 +50,7 @@ void ChannelInfoWidget::setPanelData(int rangeMin, int rangeMax, QString channel
     this->channelName->setText(channelName);
 }
 
-// void ChannelInfoWidget::updateChannel() {
-//     emit valueChanged(rangeMin->text(), rangeMax->text(), channelName->text());
-// }
+void ChannelInfoWidget::updateChannel() {
+    std::cout << "ChannelInfoWidget::updateChannel()" << std::endl;
+    emit valueChanged(rangeMin->text(), rangeMax->text(), channelName->text());
+}

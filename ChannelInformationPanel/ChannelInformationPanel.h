@@ -6,7 +6,7 @@
 #include "ChannelInformationPanel/StackPanelWidgets/CommsConfigWidget.h"
 #include "ChannelInformationPanel/StackPanelWidgets/CommsDataWidget.h"
 #include "Taskbar.h"
-#include "PanelDataContainer.h"
+// #include "PanelDataContainer.h"
 
 #include <iostream>
 #include <QGridLayout>
@@ -18,11 +18,14 @@ class ChannelInformationPanel: public QFrame {
         enum channelDiplay { channelInformation = 1, channelMetrics = 2, channelProperties = 3 };
         
         QStackedWidget *stackWidget;
+        ChannelInfoWidget *infoWidget;
+        CommsConfigWidget *configWidget;
+        CommsDataWidget *dataWidget;
         Taskbar *taskbar;
         // PanelDataContainer *panelDataContainer;
 
         explicit ChannelInformationPanel(QFrame *parent = nullptr);
-        // void setChannelInformation(ChannelListWidgetItem *channelListWidgetItem);
+        void setChannelInformation(ChannelListWidgetItem *channelListWidgetItem);
         // void hideTab();
         void showChannelInfo();
         void showCommsConfig();
