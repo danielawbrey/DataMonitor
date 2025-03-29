@@ -25,7 +25,7 @@ class ChannelInformationPanel: public QFrame {
 
         explicit ChannelInformationPanel(QFrame *parent = nullptr);
         void setChannelInformation(ChannelListWidgetItem *channelListWidgetItem);
-        // void hideTab();
+        void hideTab();
         void showChannelInfo();
         void showCommsConfig();
         void showCommsData();
