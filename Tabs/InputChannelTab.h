@@ -3,7 +3,6 @@
 
 #include "./ChannelListWidgetItems/ChannelListWidgetItem.h"
 #include "./ChannelInformationPanel/ChannelInformationPanel.h"
-// #include "./ChannelInformationPanel/PanelDataContainer.h"
 #include "./ChannelInformationPanel/Taskbar.h"
 #include "./ChannelInformationPanel/StackPanelWidgets/ChannelInfoWidget.h"
 

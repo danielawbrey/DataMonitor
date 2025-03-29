@@ -1,8 +1,6 @@
 #include "ChannelInfoWidget.h"
 
 ChannelInfoWidget::ChannelInfoWidget(QWidget *parent) : QWidget(parent) {
-    // std::cout << "PanelDataContainer::showChannelInfo()" << std::endl;
-
     groupBox = new QGroupBox("Channel Information", this);
     groupBox->setMaximumHeight(400);
 
@@ -51,6 +49,5 @@ void ChannelInfoWidget::setPanelData(int rangeMin, int rangeMax, QString channel
 }
 
 void ChannelInfoWidget::updateChannel() {
-    std::cout << "ChannelInfoWidget::updateChannel()" << std::endl;
     emit valueChanged(rangeMin->text(), rangeMax->text(), channelName->text());
 }

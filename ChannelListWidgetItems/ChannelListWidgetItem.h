@@ -12,22 +12,17 @@
 #include <QLineEdit>
 #include <QLabel>
 
-class ChannelListWidgetItem: public QWidget {
-    // Q_OBJECT
-    
+class ChannelListWidgetItem: public QWidget {    
     public:
-        QPushButton *deleteButton;
-
         explicit ChannelListWidgetItem(QString name, QWidget *parent = nullptr);
-        // void setChannelName(QString *name);
         void setSliderValue();
         int getSliderMinimumValue();
         int getSliderMaximumValue();
         void setSliderMinimumValue(int rangeMin);
         void setSliderMaximumValue(int rangeMax);
         void setChannelName(QString channelName);
-        // void deleteChannel();
         QString getChannelName();
+        QPushButton *deleteButton;
 
     private:
         int currentSliderValue, sliderMaxValue, sliderMinValue;

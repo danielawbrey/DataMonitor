@@ -1,8 +1,6 @@
 #include "CommsConfigWidget.h"
 
 CommsConfigWidget::CommsConfigWidget(QWidget *parent) : QWidget(parent) {
-    // std::cout << "PanelDataContainer::showCommsConfig()" << std::endl;
-
     QGroupBox *groupBox = new QGroupBox("Channel Communication Properties", this);
     groupBox->setMaximumHeight(400);
 

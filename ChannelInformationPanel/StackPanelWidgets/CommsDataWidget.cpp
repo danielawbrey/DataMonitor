@@ -1,8 +1,6 @@
 #include "CommsDataWidget.h"
 
 CommsDataWidget::CommsDataWidget(QWidget *parent) : QWidget(parent) {
-    // std::cout << "PanelDataContainer::showCommsData()" << std::endl;
-
     QGroupBox *groupBox = new QGroupBox("Channel Metrics", this);
     groupBox->setMaximumHeight(400);
 

@@ -6,7 +6,6 @@
 #include "ChannelInformationPanel/StackPanelWidgets/CommsConfigWidget.h"
 #include "ChannelInformationPanel/StackPanelWidgets/CommsDataWidget.h"
 #include "Taskbar.h"
-// #include "PanelDataContainer.h"
 
 #include <iostream>
 #include <QGridLayout>
@@ -30,7 +29,6 @@ class ChannelInformationPanel: public QFrame {
         void showChannelInfo();
         void showCommsConfig();
         void showCommsData();
-        // void switchPanelDisplay(int channelDisplayType);
 
     private:
         bool dataPanelHidden = false;
