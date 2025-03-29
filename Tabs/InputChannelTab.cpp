@@ -3,12 +3,24 @@
 InputChannelTab::InputChannelTab(QWidget *parent) : QWidget(parent) {
     QVBoxLayout *pageLayout = new QVBoxLayout();
     
+    QHBoxLayout *buttonLayout = new QHBoxLayout();
+
     QPushButton *addButton = new QPushButton("Add Channel");
     addButton->setMinimumWidth(100);
     addButton->setMaximumWidth(150);
     connect(addButton, &QPushButton::clicked, this, &InputChannelTab::addChannel);
-    pageLayout->addWidget(addButton);
-    
+    buttonLayout->addWidget(addButton);
+
+    QPushButton *deleteButton = new QPushButton("Delete Channel");
+    deleteButton->setMinimumWidth(100);
+    deleteButton->setMaximumWidth(150);
+    connect(deleteButton, &QPushButton::clicked, this, &InputChannelTab::deleteChannel);
+    buttonLayout->addWidget(deleteButton);
+
+    buttonLayout->setAlignment(Qt::AlignLeft);
+
+    pageLayout->addLayout(buttonLayout);
+
     QGridLayout *channelDataLayout = new QGridLayout();
 
     channelList = new QListWidget();
@@ -35,11 +47,11 @@ InputChannelTab::InputChannelTab(QWidget *parent) : QWidget(parent) {
         }
     });
     
-    channelDataLayout->addWidget(channelList, 0,0,1,1);
+    channelDataLayout->addWidget(channelList, 0, 0, 1, 1);
 
     channelInformationPanel = new ChannelInformationPanel();
-    channelInformationPanel->setHidden(true);
-    channelDataLayout->addWidget(channelInformationPanel,0,1,-1,1);
+    channelInformationPanel->stackWidget->setHidden(true);
+    channelDataLayout->addWidget(channelInformationPanel, 0, 1, -1, 1);
 
     pageLayout->addLayout(channelDataLayout);
 
@@ -59,8 +71,8 @@ void InputChannelTab::addChannel() {
     channelList->setItemWidget(item, channelListWidgetItem);
 }
 
-void InputChannelTab::deleteChannel(QString channelName) {
-    std::cout << channelName.toStdString() << std::endl;
+void InputChannelTab::deleteChannel() {
+    std::cout << "InputChannelTab::deleteChannel()" << std::endl;
 }
 
 void InputChannelTab::instantiateChannelInformationPanel(ChannelListWidgetItem *channelListWidgetItem) {

@@ -14,14 +14,11 @@
 
 class ChannelInformationPanel: public QFrame {    
     public:
-        enum channelDiplay { channelInformation = 1, channelMetrics = 2, channelProperties = 3 };
-        
         QStackedWidget *stackWidget;
         ChannelInfoWidget *infoWidget;
         CommsConfigWidget *configWidget;
         CommsDataWidget *dataWidget;
         Taskbar *taskbar;
-        // PanelDataContainer *panelDataContainer;
 
         explicit ChannelInformationPanel(QFrame *parent = nullptr);
         void setChannelInformation(ChannelListWidgetItem *channelListWidgetItem);

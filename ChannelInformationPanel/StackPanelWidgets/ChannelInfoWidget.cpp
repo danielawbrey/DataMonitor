@@ -4,12 +4,12 @@ ChannelInfoWidget::ChannelInfoWidget(QWidget *parent) : QWidget(parent) {
     groupBox = new QGroupBox("Channel Information", this);
     groupBox->setMaximumHeight(400);
 
-    QVBoxLayout *layout = new QVBoxLayout();
+    QVBoxLayout *groupBoxLayout = new QVBoxLayout();
 
     QPushButton *applyChangesButton = new QPushButton("Apply changes");
     connect(applyChangesButton, &QPushButton::clicked, this, &ChannelInfoWidget::updateChannel);
     applyChangesButton->setMinimumWidth(125);
-    layout->addWidget(applyChangesButton, 0, Qt::AlignRight);
+    groupBoxLayout->addWidget(applyChangesButton, 0, Qt::AlignRight);
 
     QHBoxLayout *channelNameLayout = new QHBoxLayout();
     QLabel *nameLabel = new QLabel("Channel Name");
@@ -17,7 +17,7 @@ ChannelInfoWidget::ChannelInfoWidget(QWidget *parent) : QWidget(parent) {
     channelName = new QLineEdit();
     channelName->setMaximumWidth(125);
     channelNameLayout->addWidget(channelName);
-    layout->addLayout(channelNameLayout);
+    groupBoxLayout->addLayout(channelNameLayout);
 
     QHBoxLayout *rangeMinLayout = new QHBoxLayout();
     QLabel *rangeMinLabel = new QLabel("Range Minimum");
@@ -25,7 +25,7 @@ ChannelInfoWidget::ChannelInfoWidget(QWidget *parent) : QWidget(parent) {
     rangeMin = new QLineEdit();
     rangeMin->setMaximumWidth(125);
     rangeMinLayout->addWidget(rangeMin);
-    layout->addLayout(rangeMinLayout);
+    groupBoxLayout->addLayout(rangeMinLayout);
 
     QHBoxLayout *rangeMaxLayout = new QHBoxLayout();
     QLabel *rangeMaxLabel = new QLabel("Range Maximum");
@@ -33,9 +33,9 @@ ChannelInfoWidget::ChannelInfoWidget(QWidget *parent) : QWidget(parent) {
     rangeMax = new QLineEdit();
     rangeMax->setMaximumWidth(125);
     rangeMaxLayout->addWidget(rangeMax);
-    layout->addLayout(rangeMaxLayout);
+    groupBoxLayout->addLayout(rangeMaxLayout);
     
-    groupBox->setLayout(layout);
+    groupBox->setLayout(groupBoxLayout);
 
     QVBoxLayout *parentLayout = new QVBoxLayout();
     parentLayout->addWidget(groupBox);

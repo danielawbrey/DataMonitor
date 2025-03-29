@@ -22,7 +22,7 @@ class OutputChannelTab: public QWidget {
     public:
         explicit OutputChannelTab(QWidget *parent = nullptr);
         void addChannel();
-        void deleteChannel(QString channelName);
+        void deleteChannel();
         void instantiateChannelInformationPanel(ChannelListWidgetItem *channelListWidgetItem);
         
     private:

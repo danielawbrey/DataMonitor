@@ -22,7 +22,7 @@ class InputChannelTab: public QWidget {
     public:
         explicit InputChannelTab(QWidget *parent = nullptr);
         void addChannel();
-        void deleteChannel(QString channelName);
+        void deleteChannel();
         void instantiateChannelInformationPanel(ChannelListWidgetItem *channelListWidgetItem);
         void valueChanged(QString rangeMin, QString rangeMax, QString channelName);
 
