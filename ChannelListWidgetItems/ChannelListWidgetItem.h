@@ -14,7 +14,8 @@
 
 class ChannelListWidgetItem: public QWidget {    
     public:
-        explicit ChannelListWidgetItem(QString name, QWidget *parent = nullptr);
+        explicit ChannelListWidgetItem(QWidget *parent = nullptr);
+        ~ChannelListWidgetItem();
         void setSliderValue();
         int getSliderMinimumValue();
         int getSliderMaximumValue();
@@ -22,7 +23,6 @@ class ChannelListWidgetItem: public QWidget {
         void setSliderMaximumValue(int rangeMax);
         void setChannelName(QString channelName);
         QString getChannelName();
-        QPushButton *deleteButton;
 
     private:
         int currentSliderValue, sliderMaxValue, sliderMinValue;
@@ -31,6 +31,7 @@ class ChannelListWidgetItem: public QWidget {
         QLineEdit *sliderValue;
         QLabel *label;
         UdpClient *client;
+        inline static int counter;
 };
 
 #endif

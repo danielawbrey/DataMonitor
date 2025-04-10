@@ -29,8 +29,6 @@ InputChannelTab::InputChannelTab(QWidget *parent) : QWidget(parent) {
         if(clickedItem) {
             ChannelListWidgetItem* clickedListItem = clickedItem->data(Qt::UserRole).value<ChannelListWidgetItem*>();
 
-            channelInformationPanel->setHidden(false);
-
             instantiateChannelInformationPanel(clickedListItem);
 
             connect(channelInformationPanel->infoWidget, &ChannelInfoWidget::valueChanged, this, [this](QString rangeMin, 
@@ -50,7 +48,6 @@ InputChannelTab::InputChannelTab(QWidget *parent) : QWidget(parent) {
     channelDataLayout->addWidget(channelList, 0, 0, 1, 1);
 
     channelInformationPanel = new ChannelInformationPanel();
-    channelInformationPanel->stackWidget->setHidden(true);
     channelDataLayout->addWidget(channelInformationPanel, 0, 1, -1, 1);
 
     pageLayout->addLayout(channelDataLayout);
@@ -59,10 +56,7 @@ InputChannelTab::InputChannelTab(QWidget *parent) : QWidget(parent) {
 };
 
 void InputChannelTab::addChannel() {
-    channelListWidgetItem = new ChannelListWidgetItem("Lorem Ipsum");
-    // connect(channelListWidgetItem->deleteButton, &QPushButton::clicked, this, [this]() {
-    //     deleteChannel(channelListWidgetItem->getChannelName());
-    // });
+    channelListWidgetItem = new ChannelListWidgetItem();
 
     QListWidgetItem *item = new QListWidgetItem(channelList);
     item->setSizeHint(channelListWidgetItem->sizeHint());
@@ -72,10 +66,10 @@ void InputChannelTab::addChannel() {
 }
 
 void InputChannelTab::deleteChannel() {
-    std::cout << "InputChannelTab::deleteChannel()" << std::endl;
+    QListWidgetItem *listItem = channelList->takeItem(channelList->currentRow());
+    delete listItem;
 }
 
 void InputChannelTab::instantiateChannelInformationPanel(ChannelListWidgetItem *channelListWidgetItem) {
-    channelInformationPanel->setHidden(false);
     channelInformationPanel->setChannelInformation(channelListWidgetItem);
 }

@@ -10,6 +10,7 @@
 #include <iostream>
 #include <QGridLayout>
 #include <QFrame>
+#include <QSplitter>
 #include <QStackedWidget>
 
 class ChannelInformationPanel: public QFrame {    

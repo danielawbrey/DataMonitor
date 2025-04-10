@@ -48,7 +48,7 @@ OutputChannelTab::OutputChannelTab(QWidget *parent): QWidget(parent) {
     channelDataLayout->addWidget(channelList, 0,0,1,1);
 
     channelInformationPanel = new ChannelInformationPanel();
-    channelInformationPanel->stackWidget->setHidden(true);
+    // channelInformationPanel->stackWidget->setHidden(true);
     channelDataLayout->addWidget(channelInformationPanel,0,1,-1,1);
 
     pageLayout->addLayout(channelDataLayout);
@@ -57,7 +57,7 @@ OutputChannelTab::OutputChannelTab(QWidget *parent): QWidget(parent) {
 };
 
 void OutputChannelTab::addChannel() {
-    channelListWidgetItem = new ChannelListWidgetItem("Lorem Ipsum");
+    channelListWidgetItem = new ChannelListWidgetItem();
     // connect(channelListWidgetItem->deleteButton, &QPushButton::clicked, this, [this]() {
     //     deleteChannel(channelListWidgetItem->getChannelName());
     // });
@@ -74,6 +74,6 @@ void OutputChannelTab::deleteChannel() {
 }
 
 void OutputChannelTab::instantiateChannelInformationPanel(ChannelListWidgetItem *channelListWidgetItem) {
-    channelInformationPanel->setHidden(false);
+    // channelInformationPanel->setHidden(false);
     channelInformationPanel->setChannelInformation(channelListWidgetItem);
 }

@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <iostream>
 #include <QVBoxLayout>
+#include <QComboBox>
 #include <QHBoxLayout>
 #include <QWidget>
 #include <QLineEdit>
@@ -15,6 +16,7 @@
 class CommsConfigWidget: public QWidget {
     public:
         CommsConfigWidget(QWidget *parent = nullptr);
+        QComboBox *comboBox;
 };
 
 #endif

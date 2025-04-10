@@ -11,6 +11,16 @@ CommsConfigWidget::CommsConfigWidget(QWidget *parent) : QWidget(parent) {
     applyChangesButton->setMinimumWidth(125);
     layout->addWidget(applyChangesButton, 0, Qt::AlignRight);
 
+    QHBoxLayout *protocolLayout = new QHBoxLayout();
+    QLabel *protocolLabel = new QLabel("Protocol");
+    protocolLayout->addWidget(protocolLabel);
+    comboBox = new QComboBox();
+    comboBox->setMinimumWidth(125);
+    comboBox->insertItem(0, "TCP");
+    comboBox->insertItem(1, "UDP");
+    protocolLayout->addWidget(comboBox, 0, Qt::AlignRight);
+    layout->addLayout(protocolLayout);
+
     QHBoxLayout *ipAddressLayout = new QHBoxLayout();
     QLabel *ipAddressLabel = new QLabel("IP Address");
     ipAddressLayout->addWidget(ipAddressLabel);

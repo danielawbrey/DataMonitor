@@ -1,11 +1,13 @@
 #include "ChannelListWidgetItem.h"
 
-ChannelListWidgetItem::ChannelListWidgetItem(QString name, QWidget *parent) : QWidget(parent), channelName(name) {
+ChannelListWidgetItem::ChannelListWidgetItem(QWidget *parent) : QWidget(parent) {
     client = new UdpClient();
+
+    counter++;
 
     QHBoxLayout *layout = new QHBoxLayout();
 
-    label = new QLabel(name);
+    label = new QLabel("Channel " + QString::number(counter));
     label->setMinimumWidth(100);
     label->setMaximumWidth(150);
     layout->addWidget(label);
@@ -23,11 +25,11 @@ ChannelListWidgetItem::ChannelListWidgetItem(QString name, QWidget *parent) : QW
     slider->setMaximum(100);
     layout->addWidget(slider);
 
-    deleteButton = new QPushButton("Delete");
-    // connect(deleteButton, &QPushButton::clicked, this, &ChannelListWidgetItem::deleteChannel);
-    layout->addWidget(deleteButton, 0, Qt::AlignLeft);
-
     setLayout(layout);
+}
+
+ChannelListWidgetItem::~ChannelListWidgetItem() {
+    counter--;
 }
 
 void ChannelListWidgetItem::setSliderValue() {
