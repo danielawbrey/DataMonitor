@@ -17,9 +17,9 @@ int main(int argc, char *argv[]) {
 
     QTabWidget *tabWidget = new QTabWidget();
     InputChannelTab *inputChannelTab  = new InputChannelTab();
-    tabWidget->addTab(inputChannelTab, "Input Channel");
-    OutputChannelTab *outputChannelTab = new OutputChannelTab();
-    tabWidget->addTab(outputChannelTab, "Output Channel");
+    tabWidget->addTab(inputChannelTab, "Channels");
+    // OutputChannelTab *outputChannelTab = new OutputChannelTab();
+    // tabWidget->addTab(outputChannelTab, "Output Channel");
     window.setCentralWidget(tabWidget);
 
     return app.exec();

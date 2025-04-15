@@ -44,12 +44,18 @@ InputChannelTab::InputChannelTab(QWidget *parent) : QWidget(parent) {
             });
         }
     });
+
+    connect(channelList, &QListWidget::currentRowChanged, this, [this]() {
+        QListWidgetItem *clickedItem = channelList->currentItem();
+        if(clickedItem) {
+            ChannelListWidgetItem* clickedListItem = clickedItem->data(Qt::UserRole).value<ChannelListWidgetItem*>();
+            instantiateChannelInformationPanel(clickedListItem);
+        }
+    });
     
     channelDataLayout->addWidget(channelList, 0, 0, 1, 1);
-
     channelInformationPanel = new ChannelInformationPanel();
     channelDataLayout->addWidget(channelInformationPanel, 0, 1, -1, 1);
-
     pageLayout->addLayout(channelDataLayout);
 
     setLayout(pageLayout);

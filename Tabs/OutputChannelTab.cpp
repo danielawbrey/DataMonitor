@@ -58,9 +58,6 @@ OutputChannelTab::OutputChannelTab(QWidget *parent): QWidget(parent) {
 
 void OutputChannelTab::addChannel() {
     channelListWidgetItem = new ChannelListWidgetItem();
-    // connect(channelListWidgetItem->deleteButton, &QPushButton::clicked, this, [this]() {
-    //     deleteChannel(channelListWidgetItem->getChannelName());
-    // });
 
     QListWidgetItem *item = new QListWidgetItem(channelList);
     item->setSizeHint(channelListWidgetItem->sizeHint());

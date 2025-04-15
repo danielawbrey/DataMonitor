@@ -24,8 +24,8 @@ ChannelInformationPanel::ChannelInformationPanel(QFrame *parent) : QFrame(parent
 
     setFrameShape(QFrame::Box);
     setLineWidth(1); 
-    // setMinimumWidth(250);
     setMaximumWidth(375);
+    
     setLayout(mainLayout);
 };
 
