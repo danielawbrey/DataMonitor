@@ -2,10 +2,8 @@
 #define COMMS_INFO_WIDGET
 
 #include <QWidget>
-#include <iostream>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
-#include <QWidget>
 #include <QLineEdit>
 #include <QPushButton>
 #include <QLabel>

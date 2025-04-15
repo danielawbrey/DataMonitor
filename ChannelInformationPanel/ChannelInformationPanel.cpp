@@ -25,7 +25,7 @@ ChannelInformationPanel::ChannelInformationPanel(QFrame *parent) : QFrame(parent
     setFrameShape(QFrame::Box);
     setLineWidth(1); 
     setMaximumWidth(375);
-    
+
     setLayout(mainLayout);
 };
 
@@ -49,5 +49,9 @@ void ChannelInformationPanel::showCommsData() {
 void ChannelInformationPanel::setChannelInformation(ChannelListWidgetItem *channelListWidgetItem) {
     infoWidget->setPanelData(channelListWidgetItem->getSliderMinimumValue(), 
                              channelListWidgetItem->getSliderMaximumValue(), 
-                             channelListWidgetItem->getChannelName());    
+                             channelListWidgetItem->getChannelName());
+                             
+    configWidget->setPanelData(channelListWidgetItem->getIpAddress(),
+                               channelListWidgetItem->getPortNumber(),
+                               channelListWidgetItem->getPacketSize());
 }

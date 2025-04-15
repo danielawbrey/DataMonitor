@@ -64,7 +64,8 @@ SOURCES       = main.cpp \
 		ChannelInformationPanel/StackPanelWidgets/CommsDataWidget.cpp moc_InputChannelTab.cpp \
 		moc_OutputChannelTab.cpp \
 		moc_Taskbar.cpp \
-		moc_ChannelInfoWidget.cpp
+		moc_ChannelInfoWidget.cpp \
+		moc_CommsConfigWidget.cpp
 OBJECTS       = main.o \
 		InputChannelTab.o \
 		OutputChannelTab.o \
@@ -78,7 +79,8 @@ OBJECTS       = main.o \
 		moc_InputChannelTab.o \
 		moc_OutputChannelTab.o \
 		moc_Taskbar.o \
-		moc_ChannelInfoWidget.o
+		moc_ChannelInfoWidget.o \
+		moc_CommsConfigWidget.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/common/linux.conf \
@@ -360,9 +362,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/data/dummy.cpp
 	g++ -pipe -O2 -Wall -Wextra -fPIC -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_InputChannelTab.cpp moc_OutputChannelTab.cpp moc_Taskbar.cpp moc_ChannelInfoWidget.cpp
+compiler_moc_header_make_all: moc_InputChannelTab.cpp moc_OutputChannelTab.cpp moc_Taskbar.cpp moc_ChannelInfoWidget.cpp moc_CommsConfigWidget.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_InputChannelTab.cpp moc_OutputChannelTab.cpp moc_Taskbar.cpp moc_ChannelInfoWidget.cpp
+	-$(DEL_FILE) moc_InputChannelTab.cpp moc_OutputChannelTab.cpp moc_Taskbar.cpp moc_ChannelInfoWidget.cpp moc_CommsConfigWidget.cpp
 moc_InputChannelTab.cpp: Tabs/InputChannelTab.h \
 		ChannelListWidgetItems/ChannelListWidgetItem.h \
 		UDP/UdpClient.h \
@@ -396,6 +398,11 @@ moc_ChannelInfoWidget.cpp: ChannelInformationPanel/StackPanelWidgets/ChannelInfo
 		moc_predefs.h \
 		/usr/lib/qt6/libexec/moc
 	/usr/lib/qt6/libexec/moc $(DEFINES) --include /home/daniel/Documents/DataMonitor/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -I/home/daniel/Documents/DataMonitor -I/usr/include/x86_64-linux-gnu/qt6 -I/usr/include/x86_64-linux-gnu/qt6/QtWidgets -I/usr/include/x86_64-linux-gnu/qt6/QtGui -I/usr/include/x86_64-linux-gnu/qt6/QtCore -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ChannelInformationPanel/StackPanelWidgets/ChannelInfoWidget.h -o moc_ChannelInfoWidget.cpp
+
+moc_CommsConfigWidget.cpp: ChannelInformationPanel/StackPanelWidgets/CommsConfigWidget.h \
+		moc_predefs.h \
+		/usr/lib/qt6/libexec/moc
+	/usr/lib/qt6/libexec/moc $(DEFINES) --include /home/daniel/Documents/DataMonitor/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -I/home/daniel/Documents/DataMonitor -I/usr/include/x86_64-linux-gnu/qt6 -I/usr/include/x86_64-linux-gnu/qt6/QtWidgets -I/usr/include/x86_64-linux-gnu/qt6/QtGui -I/usr/include/x86_64-linux-gnu/qt6/QtCore -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ChannelInformationPanel/StackPanelWidgets/CommsConfigWidget.h -o moc_CommsConfigWidget.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -483,6 +490,9 @@ moc_Taskbar.o: moc_Taskbar.cpp
 
 moc_ChannelInfoWidget.o: moc_ChannelInfoWidget.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_ChannelInfoWidget.o moc_ChannelInfoWidget.cpp
+
+moc_CommsConfigWidget.o: moc_CommsConfigWidget.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_CommsConfigWidget.o moc_CommsConfigWidget.cpp
 
 ####### Install
 

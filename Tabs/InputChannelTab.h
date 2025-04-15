@@ -24,7 +24,7 @@ class InputChannelTab: public QWidget {
         void addChannel();
         void deleteChannel();
         void instantiateChannelInformationPanel(ChannelListWidgetItem *channelListWidgetItem);
-        void valueChanged(QString rangeMin, QString rangeMax, QString channelName);
+        // void valueChanged(QString rangeMin, QString rangeMax, QString channelName);
 
     private:
         QListWidget *channelList;

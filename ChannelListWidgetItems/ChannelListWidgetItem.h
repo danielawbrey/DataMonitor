@@ -19,14 +19,20 @@ class ChannelListWidgetItem: public QWidget {
         void setSliderValue();
         int getSliderMinimumValue();
         int getSliderMaximumValue();
+        int getPacketSize();
+        int getPortNumber();
+        void setChannelIpAddress(QString ipAddress);
+        void setChannelPortNumber(int portNumber);
+        void setChannelPacketSize(int packetSize);
         void setSliderMinimumValue(int rangeMin);
         void setSliderMaximumValue(int rangeMax);
         void setChannelName(QString channelName);
         QString getChannelName();
+        QString getIpAddress();
 
     private:
-        int currentSliderValue, sliderMaxValue, sliderMinValue;
-        QString channelName;
+        int currentSliderValue, sliderMaxValue, sliderMinValue, portNumber, packetSize;
+        QString channelName, ipAddress;
         QSlider *slider;
         QLineEdit *sliderValue;
         QLabel *label;

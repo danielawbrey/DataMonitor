@@ -32,6 +32,18 @@ ChannelListWidgetItem::~ChannelListWidgetItem() {
     counter--;
 }
 
+void ChannelListWidgetItem::setChannelPortNumber(int portNumber) {
+    this->portNumber =  portNumber;
+}
+
+void ChannelListWidgetItem::setChannelPacketSize(int packetSize) {
+    this->packetSize = packetSize;
+}
+
+void ChannelListWidgetItem::setChannelIpAddress(QString ipAddress) {
+    this->ipAddress = ipAddress;
+}
+
 void ChannelListWidgetItem::setSliderValue() {
     sliderValue->setText(QString::number(slider->value()));
 }
@@ -46,6 +58,18 @@ int ChannelListWidgetItem::getSliderMaximumValue() {
 
 QString ChannelListWidgetItem::getChannelName() {
     return label->text();
+}
+
+int ChannelListWidgetItem::getPortNumber() {
+    return portNumber;
+}
+
+int ChannelListWidgetItem::getPacketSize() {
+    return packetSize;
+}
+
+QString ChannelListWidgetItem::getIpAddress() {
+    return ipAddress;
 }
 
 void ChannelListWidgetItem::setSliderMinimumValue(int rangeMin) {

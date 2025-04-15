@@ -42,6 +42,20 @@ InputChannelTab::InputChannelTab(QWidget *parent) : QWidget(parent) {
                     listItem->setSliderMinimumValue(rangeMin.toInt());
                 }
             });
+
+
+            connect(channelInformationPanel->configWidget, &CommsConfigWidget::valueChanged, this, [this](QString ipAddress, 
+                                                                                                          QString portNumber, 
+                                                                                                          QString bufferSize) {
+                QListWidgetItem* updatedListItem = channelList->currentItem();
+                if(updatedListItem) {
+                    ChannelListWidgetItem *listItem = updatedListItem->data(Qt::UserRole).value<ChannelListWidgetItem*>();
+                    listItem->setChannelIpAddress(ipAddress);
+                    listItem->setChannelPortNumber(portNumber.toInt());
+                    listItem->setChannelPacketSize(bufferSize.toInt());
+                }
+            //     std::cout << "hello" << std::endl;
+            });
         }
     });
 
