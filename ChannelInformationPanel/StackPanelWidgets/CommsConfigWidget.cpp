@@ -52,12 +52,13 @@ CommsConfigWidget::CommsConfigWidget(QWidget *parent) : QWidget(parent) {
     setLayout(parentLayout);
 };
 
-void CommsConfigWidget::setPanelData(QString ipAddress, int portNumber, int bufferSize) {
+void CommsConfigWidget::setPanelData(QString ipAddress, int portNumber, int bufferSize, int protocolSelectionIndex) {
     ipAddressLineEdit->setText(ipAddress);
     portNumberLineEdit->setText(QString::number(portNumber));
     bufferSizeLineEdit->setText(QString::number(bufferSize));
+    comboBox->setCurrentIndex(protocolSelectionIndex);
 }
 
 void CommsConfigWidget::updateChannel() {
-    emit valueChanged(ipAddressLineEdit->text(), portNumberLineEdit->text(), bufferSizeLineEdit->text());
+    emit valueChanged(ipAddressLineEdit->text(), portNumberLineEdit->text(), bufferSizeLineEdit->text(), comboBox->currentIndex());
 }

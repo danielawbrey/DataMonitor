@@ -46,13 +46,15 @@ InputChannelTab::InputChannelTab(QWidget *parent) : QWidget(parent) {
 
             connect(channelInformationPanel->configWidget, &CommsConfigWidget::valueChanged, this, [this](QString ipAddress, 
                                                                                                           QString portNumber, 
-                                                                                                          QString bufferSize) {
+                                                                                                          QString bufferSize,
+                                                                                                          int protocolSelectionIndex) {
                 QListWidgetItem* updatedListItem = channelList->currentItem();
                 if(updatedListItem) {
                     ChannelListWidgetItem *listItem = updatedListItem->data(Qt::UserRole).value<ChannelListWidgetItem*>();
                     listItem->setChannelIpAddress(ipAddress);
                     listItem->setChannelPortNumber(portNumber.toInt());
                     listItem->setChannelBufferSize(bufferSize.toInt());
+                    listItem->setProtocolSelectionIndex(protocolSelectionIndex);
                 }
             });
         }

@@ -21,18 +21,21 @@ class ChannelListWidgetItem: public QWidget {
         int getSliderMaximumValue();
         int getBufferSize();
         int getPortNumber();
+        int getProtocolSelectionIndex();
         void setChannelIpAddress(QString ipAddress);
         void setChannelPortNumber(int portNumber);
         void setChannelBufferSize(int bufferSize);
         void setSliderMinimumValue(int rangeMin);
         void setSliderMaximumValue(int rangeMax);
         void setChannelName(QString channelName);
+        void setProtocolSelectionIndex(int protocolIndex);
         QString getChannelName();
         QString getIpAddress();
 
     private:
         int bufferSize = 1024;
         int portNumber = 8080;
+        int protocolSelectionIndex = 0;
 
         int currentSliderValue, sliderMaxValue, sliderMinValue;
         QString channelName, ipAddress = "192.168.0.1";

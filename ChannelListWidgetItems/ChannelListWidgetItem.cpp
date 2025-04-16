@@ -68,8 +68,16 @@ int ChannelListWidgetItem::getBufferSize() {
     return bufferSize;
 }
 
+int ChannelListWidgetItem::getProtocolSelectionIndex() {
+    return protocolSelectionIndex;
+}
+
 QString ChannelListWidgetItem::getIpAddress() {
     return ipAddress;
+}
+
+void ChannelListWidgetItem::setProtocolSelectionIndex(int selectionIndex) {
+    protocolSelectionIndex = selectionIndex;
 }
 
 void ChannelListWidgetItem::setSliderMinimumValue(int rangeMin) {

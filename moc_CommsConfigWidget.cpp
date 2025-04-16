@@ -27,13 +27,14 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 namespace {
 struct qt_meta_stringdata_CommsConfigWidget_t {
-    uint offsetsAndSizes[12];
+    uint offsetsAndSizes[14];
     char stringdata0[18];
     char stringdata1[13];
     char stringdata2[1];
     char stringdata3[10];
     char stringdata4[11];
     char stringdata5[11];
+    char stringdata6[23];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CommsConfigWidget_t::offsetsAndSizes) + ofs), len 
@@ -44,14 +45,16 @@ Q_CONSTINIT static const qt_meta_stringdata_CommsConfigWidget_t qt_meta_stringda
         QT_MOC_LITERAL(31, 0),  // ""
         QT_MOC_LITERAL(32, 9),  // "ipAddress"
         QT_MOC_LITERAL(42, 10),  // "portNumber"
-        QT_MOC_LITERAL(53, 10)   // "bufferSize"
+        QT_MOC_LITERAL(53, 10),  // "bufferSize"
+        QT_MOC_LITERAL(64, 22)   // "protocolSelectionIndex"
     },
     "CommsConfigWidget",
     "valueChanged",
     "",
     "ipAddress",
     "portNumber",
-    "bufferSize"
+    "bufferSize",
+    "protocolSelectionIndex"
 };
 #undef QT_MOC_LITERAL
 } // unnamed namespace
@@ -70,10 +73,10 @@ Q_CONSTINIT static const uint qt_meta_data_CommsConfigWidget[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    3,   20,    2, 0x06,    1 /* Public */,
+       1,    4,   20,    2, 0x06,    1 /* Public */,
 
  // signals: parameters
-    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString,    3,    4,    5,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::Int,    3,    4,    5,    6,
 
        0        // eod
 };
@@ -91,7 +94,8 @@ Q_CONSTINIT const QMetaObject CommsConfigWidget::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QString, std::false_type>
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>
     >,
     nullptr
 } };
@@ -102,13 +106,13 @@ void CommsConfigWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, in
         auto *_t = static_cast<CommsConfigWidget *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->valueChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3]))); break;
+        case 0: _t->valueChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[4]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (CommsConfigWidget::*)(QString , QString , QString );
+            using _t = void (CommsConfigWidget::*)(QString , QString , QString , int );
             if (_t _q_method = &CommsConfigWidget::valueChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 0;
                 return;
@@ -148,9 +152,9 @@ int CommsConfigWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void CommsConfigWidget::valueChanged(QString _t1, QString _t2, QString _t3)
+void CommsConfigWidget::valueChanged(QString _t1, QString _t2, QString _t3, int _t4)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t4))) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_WARNING_POP

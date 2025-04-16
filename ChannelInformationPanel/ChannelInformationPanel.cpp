@@ -53,5 +53,6 @@ void ChannelInformationPanel::setChannelInformation(ChannelListWidgetItem *chann
                              
     configWidget->setPanelData(channelListWidgetItem->getIpAddress(),
                                channelListWidgetItem->getPortNumber(),
-                               channelListWidgetItem->getBufferSize());
+                               channelListWidgetItem->getBufferSize(),
+                               channelListWidgetItem->getProtocolSelectionIndex());
 }
