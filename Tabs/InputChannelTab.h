@@ -24,14 +24,14 @@ class InputChannelTab: public QWidget {
         void addChannel();
         void deleteChannel();
         void instantiateChannelInformationPanel(ChannelListWidgetItem *channelListWidgetItem);
-        // void valueChanged(QString rangeMin, QString rangeMax, QString channelName);
 
     private:
+        bool channelInformationPanelHidden;
+        
         QListWidget *channelList;
         ChannelListWidgetItem *channelListWidgetItem;
         ChannelInformationPanel *channelInformationPanel;
         Taskbar *taskbar;
-        bool channelInformationPanelHidden;
 };
 
 #endif

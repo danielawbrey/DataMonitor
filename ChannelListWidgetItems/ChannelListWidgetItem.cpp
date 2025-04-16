@@ -12,8 +12,8 @@ ChannelListWidgetItem::ChannelListWidgetItem(QWidget *parent) : QWidget(parent) 
     label->setMaximumWidth(150);
     layout->addWidget(label);
 
-    sliderValue = new QLineEdit();
-    sliderValue->setText(QString::number(0));
+    sliderValue = new QLineEdit(QString::number(0));
+    // sliderValue->setText(QString::number(0));
     sliderValue->setMinimumWidth(50);
     sliderValue->setMaximumWidth(100);
     layout->addWidget(sliderValue);
@@ -33,11 +33,11 @@ ChannelListWidgetItem::~ChannelListWidgetItem() {
 }
 
 void ChannelListWidgetItem::setChannelPortNumber(int portNumber) {
-    this->portNumber =  portNumber;
+    this->portNumber = portNumber;
 }
 
-void ChannelListWidgetItem::setChannelPacketSize(int packetSize) {
-    this->packetSize = packetSize;
+void ChannelListWidgetItem::setChannelBufferSize(int bufferSize) {
+    this->bufferSize = bufferSize;
 }
 
 void ChannelListWidgetItem::setChannelIpAddress(QString ipAddress) {
@@ -64,8 +64,8 @@ int ChannelListWidgetItem::getPortNumber() {
     return portNumber;
 }
 
-int ChannelListWidgetItem::getPacketSize() {
-    return packetSize;
+int ChannelListWidgetItem::getBufferSize() {
+    return bufferSize;
 }
 
 QString ChannelListWidgetItem::getIpAddress() {

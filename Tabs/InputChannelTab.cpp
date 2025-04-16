@@ -52,9 +52,8 @@ InputChannelTab::InputChannelTab(QWidget *parent) : QWidget(parent) {
                     ChannelListWidgetItem *listItem = updatedListItem->data(Qt::UserRole).value<ChannelListWidgetItem*>();
                     listItem->setChannelIpAddress(ipAddress);
                     listItem->setChannelPortNumber(portNumber.toInt());
-                    listItem->setChannelPacketSize(bufferSize.toInt());
+                    listItem->setChannelBufferSize(bufferSize.toInt());
                 }
-            //     std::cout << "hello" << std::endl;
             });
         }
     });
