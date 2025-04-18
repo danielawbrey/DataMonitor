@@ -19,4 +19,7 @@ HEADERS += ./Tabs/InputChannelTab.h \
            ./ChannelInformationPanel/StackPanelWidgets/CommsConfigWidget.h \
            ./ChannelInformationPanel/StackPanelWidgets/CommsDataWidget.h \
 
+INCLUDEPATH += /usr/include/tinyxml2
+LIBS += -ltinyxml2
+
 QT += widgets
