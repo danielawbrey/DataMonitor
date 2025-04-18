@@ -14,23 +14,36 @@
 
 class ChannelListWidgetItem: public QWidget {    
     public:
-        explicit ChannelListWidgetItem(QString name, QWidget *parent = nullptr);
+        explicit ChannelListWidgetItem(QWidget *parent = nullptr);
+        ~ChannelListWidgetItem();
         void setSliderValue();
         int getSliderMinimumValue();
         int getSliderMaximumValue();
+        int getBufferSize();
+        int getPortNumber();
+        int getProtocolSelectionIndex();
+        void setChannelIpAddress(QString ipAddress);
+        void setChannelPortNumber(int portNumber);
+        void setChannelBufferSize(int bufferSize);
         void setSliderMinimumValue(int rangeMin);
         void setSliderMaximumValue(int rangeMax);
         void setChannelName(QString channelName);
+        void setProtocolSelectionIndex(int protocolIndex);
         QString getChannelName();
-        QPushButton *deleteButton;
+        QString getIpAddress();
 
     private:
+        int bufferSize = 1024;
+        int portNumber = 8080;
+        int protocolSelectionIndex = 0;
+
         int currentSliderValue, sliderMaxValue, sliderMinValue;
-        QString channelName;
+        QString channelName, ipAddress = "192.168.0.1";
         QSlider *slider;
         QLineEdit *sliderValue;
         QLabel *label;
         UdpClient *client;
+        inline static int counter;
 };
 
 #endif

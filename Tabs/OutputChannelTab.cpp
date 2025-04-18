@@ -3,12 +3,24 @@
 OutputChannelTab::OutputChannelTab(QWidget *parent): QWidget(parent) {
     QVBoxLayout *pageLayout = new QVBoxLayout();
 
+    QHBoxLayout *buttonLayout = new QHBoxLayout();
+
     QPushButton *addButton = new QPushButton("Add Channel");
     addButton->setMinimumWidth(100);
     addButton->setMaximumWidth(150);
     connect(addButton, &QPushButton::clicked, this, &OutputChannelTab::addChannel);
-    pageLayout->addWidget(addButton);
-    
+    buttonLayout->addWidget(addButton);
+
+    QPushButton *deleteButton = new QPushButton("Delete Channel");
+    deleteButton->setMinimumWidth(100);
+    deleteButton->setMaximumWidth(150);
+    connect(deleteButton, &QPushButton::clicked, this, &OutputChannelTab::deleteChannel);
+    buttonLayout->addWidget(deleteButton);
+
+    buttonLayout->setAlignment(Qt::AlignLeft);
+
+    pageLayout->addLayout(buttonLayout);
+
     QGridLayout *channelDataLayout = new QGridLayout();
 
     channelList = new QListWidget();
@@ -36,7 +48,7 @@ OutputChannelTab::OutputChannelTab(QWidget *parent): QWidget(parent) {
     channelDataLayout->addWidget(channelList, 0,0,1,1);
 
     channelInformationPanel = new ChannelInformationPanel();
-    channelInformationPanel->setHidden(true);
+    // channelInformationPanel->stackWidget->setHidden(true);
     channelDataLayout->addWidget(channelInformationPanel,0,1,-1,1);
 
     pageLayout->addLayout(channelDataLayout);
@@ -45,10 +57,7 @@ OutputChannelTab::OutputChannelTab(QWidget *parent): QWidget(parent) {
 };
 
 void OutputChannelTab::addChannel() {
-    channelListWidgetItem = new ChannelListWidgetItem("Lorem Ipsum");
-    // connect(channelListWidgetItem->deleteButton, &QPushButton::clicked, this, [this]() {
-    //     deleteChannel(channelListWidgetItem->getChannelName());
-    // });
+    channelListWidgetItem = new ChannelListWidgetItem();
 
     QListWidgetItem *item = new QListWidgetItem(channelList);
     item->setSizeHint(channelListWidgetItem->sizeHint());
@@ -57,11 +66,11 @@ void OutputChannelTab::addChannel() {
     channelList->setItemWidget(item, channelListWidgetItem);
 }
 
-void OutputChannelTab::deleteChannel(QString channelName) {
-    std::cout << channelName.toStdString() << std::endl;
+void OutputChannelTab::deleteChannel() {
+    std::cout << "OutputChannelTab::deleteChannel()" << std::endl;
 }
 
 void OutputChannelTab::instantiateChannelInformationPanel(ChannelListWidgetItem *channelListWidgetItem) {
-    channelInformationPanel->setHidden(false);
+    // channelInformationPanel->setHidden(false);
     channelInformationPanel->setChannelInformation(channelListWidgetItem);
 }

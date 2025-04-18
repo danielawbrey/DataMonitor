@@ -1,17 +1,19 @@
 #include "ChannelListWidgetItem.h"
 
-ChannelListWidgetItem::ChannelListWidgetItem(QString name, QWidget *parent) : QWidget(parent), channelName(name) {
+ChannelListWidgetItem::ChannelListWidgetItem(QWidget *parent) : QWidget(parent) {
     client = new UdpClient();
+
+    counter++;
 
     QHBoxLayout *layout = new QHBoxLayout();
 
-    label = new QLabel(name);
+    label = new QLabel("Channel " + QString::number(counter));
     label->setMinimumWidth(100);
     label->setMaximumWidth(150);
     layout->addWidget(label);
 
-    sliderValue = new QLineEdit();
-    sliderValue->setText(QString::number(0));
+    sliderValue = new QLineEdit(QString::number(0));
+    // sliderValue->setText(QString::number(0));
     sliderValue->setMinimumWidth(50);
     sliderValue->setMaximumWidth(100);
     layout->addWidget(sliderValue);
@@ -23,11 +25,23 @@ ChannelListWidgetItem::ChannelListWidgetItem(QString name, QWidget *parent) : QW
     slider->setMaximum(100);
     layout->addWidget(slider);
 
-    deleteButton = new QPushButton("Delete");
-    // connect(deleteButton, &QPushButton::clicked, this, &ChannelListWidgetItem::deleteChannel);
-    layout->addWidget(deleteButton, 0, Qt::AlignLeft);
-
     setLayout(layout);
+}
+
+ChannelListWidgetItem::~ChannelListWidgetItem() {
+    counter--;
+}
+
+void ChannelListWidgetItem::setChannelPortNumber(int portNumber) {
+    this->portNumber = portNumber;
+}
+
+void ChannelListWidgetItem::setChannelBufferSize(int bufferSize) {
+    this->bufferSize = bufferSize;
+}
+
+void ChannelListWidgetItem::setChannelIpAddress(QString ipAddress) {
+    this->ipAddress = ipAddress;
 }
 
 void ChannelListWidgetItem::setSliderValue() {
@@ -44,6 +58,26 @@ int ChannelListWidgetItem::getSliderMaximumValue() {
 
 QString ChannelListWidgetItem::getChannelName() {
     return label->text();
+}
+
+int ChannelListWidgetItem::getPortNumber() {
+    return portNumber;
+}
+
+int ChannelListWidgetItem::getBufferSize() {
+    return bufferSize;
+}
+
+int ChannelListWidgetItem::getProtocolSelectionIndex() {
+    return protocolSelectionIndex;
+}
+
+QString ChannelListWidgetItem::getIpAddress() {
+    return ipAddress;
+}
+
+void ChannelListWidgetItem::setProtocolSelectionIndex(int selectionIndex) {
+    protocolSelectionIndex = selectionIndex;
 }
 
 void ChannelListWidgetItem::setSliderMinimumValue(int rangeMin) {
