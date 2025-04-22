@@ -23,6 +23,85 @@ class MainWindow: public QMainWindow {
             QString desktopPath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
             QString defaultFile = desktopPath + "/profile.xml";
             QString fileName = QFileDialog::getOpenFileName(this, "Select Profile", defaultFile, "XML Files (*.xml);;All Files (*)");
+            if(!fileName.isEmpty()) {
+                QFile file(fileName);
+                if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+                    std::string testFile = fileName.toStdString();
+                    
+                    tinyxml2::XMLDocument doc;
+                    tinyxml2::XMLError result = doc.LoadFile(testFile.c_str());
+                
+                    if (result == tinyxml2::XML_SUCCESS) {
+                        std::cout << "XML file loaded successfully.\n";
+                    } else {
+                        std::cerr << "Failed to load XML file. Error code: " << result << "\n";
+                    }
+
+                    tinyxml2::XMLElement* root = doc.FirstChildElement();
+                    if(root == NULL) {
+                        std::cerr << "Failed to load file: No root element." << std::endl;
+                        doc.Clear();
+                    }
+
+                    std::string rootElement = root->Value();
+                    if(rootElement != "channels") {
+                        std::cerr << "Failed to load file: No root element." << std::endl;
+                        doc.Clear();
+                    }
+
+                    for(tinyxml2::XMLElement* xmlElement = root->FirstChildElement(); xmlElement != NULL; xmlElement = xmlElement->NextSiblingElement()) {
+                        std::string name, minimum, maximum, ipAddress, port, bufferSize, selectionIndex;
+                        
+                        for(tinyxml2::XMLElement* xmlSubElement = xmlElement->FirstChildElement(); xmlSubElement != NULL; xmlSubElement = xmlSubElement->NextSiblingElement()) {
+                            std::string elementName = xmlSubElement->Value();
+
+                            if(elementName == "InfoWidget") {
+                                for(tinyxml2::XMLElement* infoWidgetElement = xmlSubElement->FirstChildElement(); infoWidgetElement != NULL; infoWidgetElement = infoWidgetElement->NextSiblingElement()) {
+                                    std::string infoWidgetElementName = infoWidgetElement->Value();
+
+                                    if(infoWidgetElementName == "name") {
+                                        name = infoWidgetElement->GetText();
+                                    }
+
+                                    if(infoWidgetElementName == "minimum") {
+                                        minimum = infoWidgetElement->GetText();
+                                    }
+
+                                    if(infoWidgetElementName == "maximum") {
+                                        maximum = infoWidgetElement->GetText();
+                                    }
+                                }
+                            }
+
+                            if(elementName == "CommsWidget") {
+                                for(tinyxml2::XMLElement* commsWidgetElement = xmlSubElement->FirstChildElement(); commsWidgetElement != NULL; commsWidgetElement = commsWidgetElement->NextSiblingElement()) {
+                                    std::string commsWidgetElementName = commsWidgetElement->Value();
+
+                                    if(commsWidgetElementName == "ipAddress") {
+                                        ipAddress = commsWidgetElement->GetText();
+                                    }
+
+                                    if(commsWidgetElementName == "port") {
+                                        port = commsWidgetElement->GetText();
+                                    }
+
+                                    if(commsWidgetElementName == "bufferSize") {
+                                        bufferSize = commsWidgetElement->GetText();
+                                    }
+
+                                    if(commsWidgetElementName == "selectionIndex") {
+                                        selectionIndex = commsWidgetElement->GetText();
+                                    }
+                                }
+                            }
+                        }
+
+                        // Construct channel list widget item and add it to the listwidget
+                        std::cout << name << " " << minimum << " " << maximum << " " << ipAddress << " " << port << " " << bufferSize << " " << selectionIndex << std::endl;
+
+                    }
+                }
+            }
         }
 
         void saveProfile() {
@@ -44,8 +123,8 @@ class MainWindow: public QMainWindow {
 
                     tinyxml2::XMLDocument doc;
 
-                    tinyxml2::XMLDeclaration* decl = doc.NewDeclaration(R"(xml version="1.0" encoding="UTF-8")");
-                    doc.InsertFirstChild(decl);
+                    tinyxml2::XMLDeclaration* declaration = doc.NewDeclaration(R"(xml version="1.0" encoding="UTF-8")");
+                    doc.InsertFirstChild(declaration);
                 
                     tinyxml2::XMLElement* root = doc.NewElement("channels");
                     doc.InsertEndChild(root);
