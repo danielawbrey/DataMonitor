@@ -15,6 +15,7 @@
 class ChannelListWidgetItem: public QWidget {    
     public:
         explicit ChannelListWidgetItem(QWidget *parent = nullptr);
+        explicit ChannelListWidgetItem(std::string channelName, int minimum, int maximum, std::string ipAddress, int portNumber, int bufferSize, int protocolSelectionIndex, QWidget *parent = nullptr);
         ~ChannelListWidgetItem();
         void setSliderValue();
         int getSliderMinimumValue();

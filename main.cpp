@@ -1,8 +1,11 @@
 #include "./Tabs/InputChannelTab.h"
 
+#include "ChannelListWidgetItems/ChannelListWidgetItem.h"
+
 #include <tinyxml2/tinyxml2.h>
 
 #include <QApplication>
+#include <QListWidgetItem>
 #include <QWidget>
 #include <QTabWidget>
 #include <QMainWindow>
@@ -19,7 +22,7 @@
 
 class MainWindow: public QMainWindow {
     public:
-        void loadProfile() {
+        void loadProfile(InputChannelTab *inputChannelTab) {
             QString desktopPath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
             QString defaultFile = desktopPath + "/profile.xml";
             QString fileName = QFileDialog::getOpenFileName(this, "Select Profile", defaultFile, "XML Files (*.xml);;All Files (*)");
@@ -97,8 +100,14 @@ class MainWindow: public QMainWindow {
                         }
 
                         // Construct channel list widget item and add it to the listwidget
-                        std::cout << name << " " << minimum << " " << maximum << " " << ipAddress << " " << port << " " << bufferSize << " " << selectionIndex << std::endl;
-
+                        // std::cout << name << " " << minimum << " " << maximum << " " << ipAddress << " " << port << " " << bufferSize << " " << selectionIndex << std::endl;
+                        
+                        ChannelListWidgetItem* channelListWidgetItem = new ChannelListWidgetItem(name, std::stoi(minimum), std::stoi(maximum), ipAddress, std::stoi(port), std::stoi(bufferSize), std::stoi(selectionIndex));
+                        QListWidgetItem *item = new QListWidgetItem(inputChannelTab->channelList);
+                        item->setSizeHint(channelListWidgetItem->sizeHint());
+                        inputChannelTab->channelList->addItem(item);
+                        item->setData(Qt::UserRole, QVariant::fromValue<ChannelListWidgetItem*>(channelListWidgetItem));
+                        inputChannelTab->channelList->setItemWidget(item, channelListWidgetItem);
                     }
                 }
             }
@@ -213,7 +222,10 @@ class MainWindow: public QMainWindow {
             });
             profileMenu->addAction(newProfileAction);
             QAction *loadProfileAction = new QAction(tr("&Load Profile"), this);
-            connect(loadProfileAction, &QAction::triggered, this, &MainWindow::loadProfile);
+            // connect(loadProfileAction, &QAction::triggered, this, &MainWindow::loadProfile);
+            connect(loadProfileAction, &QAction::triggered, this, [this, inputChannelTab]() {
+                loadProfile(inputChannelTab);
+            });
             profileMenu->addAction(loadProfileAction);
             setMenuBar(menuBar);
 
