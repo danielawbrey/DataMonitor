@@ -28,6 +28,41 @@ ChannelListWidgetItem::ChannelListWidgetItem(QWidget *parent) : QWidget(parent) 
     setLayout(layout);
 }
 
+ChannelListWidgetItem::ChannelListWidgetItem(std::string channelName, int minimum, int maximum, std::string ipAddress,
+                                             int portNumber, int bufferSize, int protocolSelectionIndex, QWidget *parent) : QWidget(parent) {
+    client = new UdpClient();
+
+    counter++;
+
+    QHBoxLayout *layout = new QHBoxLayout();
+
+    this->bufferSize = bufferSize;
+    this->channelName = channelName.c_str();
+    this->portNumber = portNumber;
+    this->ipAddress = ipAddress.c_str();
+    this->protocolSelectionIndex = protocolSelectionIndex;
+
+    label = new QLabel(channelName.c_str());
+    label->setMinimumWidth(100);
+    label->setMaximumWidth(150);
+    layout->addWidget(label);
+
+    sliderValue = new QLineEdit(QString::number(0));
+    // sliderValue->setText(QString::number(0));
+    sliderValue->setMinimumWidth(50);
+    sliderValue->setMaximumWidth(100);
+    layout->addWidget(sliderValue);
+
+    slider = new QSlider(Qt::Horizontal);
+    connect(slider, &QSlider::valueChanged, this, &ChannelListWidgetItem::setSliderValue);
+    slider->setValue(minimum);
+    slider->setMinimum(minimum);
+    slider->setMaximum(maximum);
+    layout->addWidget(slider);
+
+    setLayout(layout);
+}
+
 ChannelListWidgetItem::~ChannelListWidgetItem() {
     counter--;
 }
