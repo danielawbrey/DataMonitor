@@ -40,9 +40,9 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
 void MainWindow::loadProfile(InputChannelTab *inputChannelTab) {
     QString desktopPath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
     QString defaultFile = desktopPath + "/profile.xml";
-    QString fileName = QFileDialog::getOpenFileName(nullptr, "Select Profile", defaultFile, "XML Files (*.xml);;All Files (*)");
+    QString fileName = QFileDialog::getOpenFileName(this, "Select Profile", defaultFile, "XML Files (*.xml);;All Files (*)");
     if(!fileName.isEmpty()) {
-        if(profileLoaded) { inputChannelTab->channelList->clear(); }
+        if(inputChannelTab->channelList->count() > 0) { inputChannelTab->channelList->clear(); }
 
         QFile file(fileName);
         if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -123,8 +123,6 @@ void MainWindow::loadProfile(InputChannelTab *inputChannelTab) {
             }
         }
     }
-
-    profileLoaded = true;
 }
 
 // void saveProfile() {
@@ -138,7 +136,7 @@ void MainWindow::loadProfile(InputChannelTab *inputChannelTab) {
 void MainWindow::newProfile(InputChannelTab *inputChannelTab) {
     QString desktopPath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
     QString defaultFile = desktopPath + "/profile.xml";
-    QString fileName = QFileDialog::getSaveFileName(nullptr, "Save Profile", defaultFile, "XML Files (*.xml);;All Files (*)");
+    QString fileName = QFileDialog::getSaveFileName(this, "Save Profile", defaultFile, "XML Files (*.xml);;All Files (*)");
     if(!fileName.isEmpty()) {
         QFile file(fileName);
         if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
