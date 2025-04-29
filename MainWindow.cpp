@@ -38,14 +38,12 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
 }
 
 void MainWindow::loadProfile(InputChannelTab *inputChannelTab) {
-    // if(this->profileLoaded) { inputChannelTab->channelList->clear(); }
-
-    // this->profileLoaded = true;
-
     QString desktopPath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
     QString defaultFile = desktopPath + "/profile.xml";
     QString fileName = QFileDialog::getOpenFileName(nullptr, "Select Profile", defaultFile, "XML Files (*.xml);;All Files (*)");
     if(!fileName.isEmpty()) {
+        if(profileLoaded) { inputChannelTab->channelList->clear(); }
+
         QFile file(fileName);
         if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
             std::string testFile = fileName.toStdString();
@@ -53,9 +51,7 @@ void MainWindow::loadProfile(InputChannelTab *inputChannelTab) {
             tinyxml2::XMLDocument doc;
             tinyxml2::XMLError result = doc.LoadFile(testFile.c_str());
         
-            if (result == tinyxml2::XML_SUCCESS) {
-                std::cout << "XML file loaded successfully.\n";
-            } else {
+            if (result != tinyxml2::XML_SUCCESS) {
                 std::cerr << "Failed to load XML file. Error code: " << result << "\n";
             }
 
@@ -127,6 +123,8 @@ void MainWindow::loadProfile(InputChannelTab *inputChannelTab) {
             }
         }
     }
+
+    profileLoaded = true;
 }
 
 // void saveProfile() {

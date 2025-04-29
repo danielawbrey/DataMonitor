@@ -31,6 +31,7 @@ class MainWindow: public QMainWindow {
         
     private:
         bool profileLoaded = false;
+        // InputChannelTab *inputChannelTab
 };
 
 #endif
