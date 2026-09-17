@@ -161,8 +161,8 @@ void MainWindow::newProfile(InputChannelTab *inputChannelTab) {
                     tinyxml2::XMLElement* infoWidgetElement = doc.NewElement("InfoWidget");
 
                     tinyxml2::XMLElement* nameElement = doc.NewElement("name");
-                    const char* channelName = listItem->getChannelName().toStdString().c_str(); 
-                    nameElement->SetText(channelName);
+                    QByteArray channelNameBytes = listItem->getChannelName().toUtf8();
+                    nameElement->SetText(channelNameBytes.constData());
                     infoWidgetElement->InsertEndChild(nameElement);
 
                     tinyxml2::XMLElement* sliderMinElement = doc.NewElement("minimum");
@@ -180,8 +180,8 @@ void MainWindow::newProfile(InputChannelTab *inputChannelTab) {
                     tinyxml2::XMLElement* commsWidgetElement = doc.NewElement("CommsWidget");
 
                     tinyxml2::XMLElement* ipAddressElement = doc.NewElement("ipAddress");
-                    const char* ipAddress = listItem->getIpAddress().toStdString().c_str(); 
-                    ipAddressElement->SetText(ipAddress);
+                    QByteArray ipAddress = listItem->getIpAddress().toUtf8(); 
+                    ipAddressElement->SetText(ipAddress.constData());
                     commsWidgetElement->InsertEndChild(ipAddressElement);
 
                     tinyxml2::XMLElement* portElement = doc.NewElement("port");

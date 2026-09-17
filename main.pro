@@ -9,6 +9,7 @@ SOURCES += main.cpp \
            ./ChannelInformationPanel/StackPanelWidgets/CommsConfigWidget.cpp \
            ./ChannelInformationPanel/StackPanelWidgets/CommsDataWidget.cpp \
            ./MainWindow.cpp \
+           ./tinyxml2/tinyxml2.cpp \
 
 HEADERS += ./Tabs/InputChannelTab.h \
            ./Tabs/OutputChannelTab.h \
@@ -20,8 +21,6 @@ HEADERS += ./Tabs/InputChannelTab.h \
            ./ChannelInformationPanel/StackPanelWidgets/CommsConfigWidget.h \
            ./ChannelInformationPanel/StackPanelWidgets/CommsDataWidget.h \
            ./MainWindow.h \
-
-INCLUDEPATH += /usr/include/tinyxml2
-LIBS += -ltinyxml2
+           ./tinyxml2/tinyxml2.h \
 
 QT += widgets
